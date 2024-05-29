@@ -8,7 +8,7 @@ import java.util.*;
 
 public class Lab7 {
     public static void main (String[] args){
-        Matrix data = new Matrix(process("C:\\Users\\cex\\OneDrive\\Escritorio\\P\\CSC 466\\PROJECT\\CSC-466-Group-Projectt\\Files\\data.txt"));
+        Matrix data = new Matrix(process("./files/data.txt"));
         System.out.println(data);
 //        ArrayList<Integer> rows = new ArrayList<>();
 //        rows.add(0);
