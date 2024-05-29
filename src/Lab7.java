@@ -10,13 +10,7 @@ public class Lab7 {
     public static void main (String[] args){
         Matrix data = new Matrix(process("./files/data.txt"));
         System.out.println(data);
-//        ArrayList<Integer> rows = new ArrayList<>();
-//        rows.add(0);
-//        rows.add(1);
-//        rows.add(2);
-//        System.out.println(data.findMostCommonValue(rows));
         printDecisionTree(data, getAttributes(data), getAllRows(data), 0, 100);
-
     }
 
     public static ArrayList<ArrayList<Integer>> process (String filePath){
@@ -43,7 +37,8 @@ public class Lab7 {
     }
 
     // TODO: finish function
-    public static void printDecisionTree(Matrix data, ArrayList<Integer> attributes, ArrayList<Integer> rows, int level, double currentIGR){
+    public static Tree printDecisionTree(Matrix data, ArrayList<Integer> attributes, ArrayList<Integer> rows, int level, double currentIGR){
+        Tree treeNode = null;
         String tabs = "";
         for (int i=0; i<level; i++) {
             tabs.concat("\t");
@@ -71,13 +66,8 @@ public class Lab7 {
                     }
                     int attributeToSplitPrint = attributeToSplit + 1;
                     System.out.println(tabs + "When attribute " + attributeToSplitPrint + " has value " + node.getKey());
-//                    double nodeEntropy = data.findEntropy(node.getValue());     // get the entorpy of the rows belonging to specific attribute category
-//                    if (nodeEntropy == 0){      //if the node is homogenous
-//                        for (int i=0; i<level; i++){
-//                            System.out.print("      ");
-//                        }
-//                        System.out.println(tabs + "  value = " + data.findMostCommonValue(node.getValue(), totalNumAttributes));      //print the class that it belongs to
-//                    } else {
+                    treeNode = new Tree(attributeToSplitPrint, node.getKey());     //make a new treeNode for this attribute and attributeVal
+
 
                     // make a copy of attributes list and remove the attribute we split on from it.
                     ArrayList<Integer> newAttributes = (ArrayList<Integer>) attributes.clone();
@@ -85,7 +75,8 @@ public class Lab7 {
                     newAttributes.remove(idxToRemove);
 
                     // recursively call the printDecisionTree with the attribute split on being removed, and the rows of the attribute cateory we are currently printing subtree of.
-                    printDecisionTree(data, newAttributes, node.getValue(), level + 1, maxIGR);
+                    // also add the child that got returned from that in current node's list of children
+                    treeNode.addChild(printDecisionTree(data, newAttributes, node.getValue(), level + 1, maxIGR));
 //                    }
                 }
             }
@@ -93,9 +84,14 @@ public class Lab7 {
                 for (int i=0; i<level; i++){
                     System.out.print("      ");
                 }
-                System.out.println(tabs + "value = " + data.findMostCommonValue(rows, totalNumAttributes));
+                int label = data.findMostCommonValue(rows, totalNumAttributes);
+                System.out.println(tabs + "value = " + label);
+
+                treeNode = new Tree(label);
             }
         }
+        return treeNode;
+
     }
 
     public static ArrayList<Integer> getAttributes(Matrix data){
