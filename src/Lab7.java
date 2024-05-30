@@ -10,7 +10,10 @@ public class Lab7 {
     public static void main (String[] args){
         Matrix data = new Matrix(process("./files/data.txt"));
         System.out.println(data);
-        printDecisionTree(data, getAttributes(data), getAllRows(data), 0, 100);
+
+        Tree decisionTree = buildDecisionTree(data, getAttributes(data), getAllRows(data), 0, 100);
+        System.out.println("");
+        decisionTree.printWholeTree();
     }
 
     public static ArrayList<ArrayList<Integer>> process (String filePath){
@@ -36,9 +39,15 @@ public class Lab7 {
         return result;
     }
 
-    // TODO: finish function
-    public static Tree printDecisionTree(Matrix data, ArrayList<Integer> attributes, ArrayList<Integer> rows, int level, double currentIGR){
-        Tree treeNode = null;
+    public static Tree buildDecisionTree(Matrix data, ArrayList<Integer> attributes, ArrayList<Integer> rows, int level, double currentIGR){
+        Tree newTree = new Tree(-1, -1);
+        newTree.setChildren(printDecisionTree(data, attributes, rows, level, currentIGR));
+        return newTree;
+    }
+    // returns a list of children for a tree layer
+    public static ArrayList<Tree> printDecisionTree(Matrix data, ArrayList<Integer> attributes, ArrayList<Integer> rows, int level, double currentIGR){
+        ArrayList<Tree> children = new ArrayList<>();
+//        Tree treeNode = null;
         String tabs = "";
         for (int i=0; i<level; i++) {
             tabs.concat("\t");
@@ -66,7 +75,10 @@ public class Lab7 {
                     }
                     int attributeToSplitPrint = attributeToSplit + 1;
                     System.out.println(tabs + "When attribute " + attributeToSplitPrint + " has value " + node.getKey());
-                    treeNode = new Tree(attributeToSplitPrint, node.getKey());     //make a new treeNode for this attribute and attributeVal
+                    // this stores the ACTUAL attribute number index (the column)
+                    // for example, when we print the attribute in column index 2, we print out "attribute 3". This stores the 2 to keep it consistent
+                    Tree treeNode = new Tree(attributeToSplit, node.getKey());     //make a new treeNode for this attribute and attributeVal
+                    children.add(treeNode);
 
 
                     // make a copy of attributes list and remove the attribute we split on from it.
@@ -75,8 +87,8 @@ public class Lab7 {
                     newAttributes.remove(idxToRemove);
 
                     // recursively call the printDecisionTree with the attribute split on being removed, and the rows of the attribute cateory we are currently printing subtree of.
-                    // also add the child that got returned from that in current node's list of children
-                    treeNode.addChild(printDecisionTree(data, newAttributes, node.getValue(), level + 1, maxIGR));
+                    // stores the children of that node we are currently splitting on
+                    treeNode.setChildren(printDecisionTree(data, newAttributes, node.getValue(), level + 1, maxIGR));
 //                    }
                 }
             }
@@ -87,10 +99,11 @@ public class Lab7 {
                 int label = data.findMostCommonValue(rows, totalNumAttributes);
                 System.out.println(tabs + "value = " + label);
 
-                treeNode = new Tree(label);
+                Tree treeNode = new Tree(label);
+                children.add(treeNode);
             }
         }
-        return treeNode;
+        return children;
 
     }
 

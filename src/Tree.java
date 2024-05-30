@@ -43,6 +43,9 @@ public class Tree {
     public ArrayList<Tree> getChildren() {
         return children;
     }
+    public void setChildren(ArrayList<Tree> children){
+        this.children = children;
+    }
 
     public int getLabel() {
         return label;
@@ -51,14 +54,28 @@ public class Tree {
 //        this.parent = parent;
 //    }
 
-    public void printTree(String indent) {
+    public void printWholeTree(){
+        for (Tree firstLayerNode : children){
+            firstLayerNode.printTreeHelper(0);
+        }
+    }
+
+    public void printTreeHelper(int level) {
         if (label != -1) {
-            System.out.println(indent + "value = " + label);
-        } else {
-            System.out.println(indent + "When attribute " + (attribute + 1) + " has value " + attributeValue);
-            for (Tree child : children) {
-                child.printTree(indent + "      ");
+            for (int i=0; i<level; i++){
+                System.out.print("      ");
             }
+            System.out.println("value = " + label);
+            return;
+        }
+
+        for (int i=0; i<level; i++){
+            System.out.print("      ");
+        }
+        System.out.println("When attribute " + (attribute + 1) + " has value " + attributeValue);
+
+        for (Tree node : children){
+            node.printTreeHelper(level + 1);
         }
     }
 }
