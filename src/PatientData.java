@@ -11,7 +11,7 @@ public class PatientData {
     private String sex;
     private String ageCategory;
     private String race;
-    private boolean isDiabetic;
+    private int isDiabetic;
     private boolean isDoesPhysicalActivity;
     private String generalHealth;
     private double hoursSlept;
@@ -31,7 +31,7 @@ public class PatientData {
         this.sex = "";
         this.ageCategory = "";
         this.race = "";
-        this.isDiabetic = false;
+        this.isDiabetic = 0; //0 - no, 1 - almost diabetic, 2 - diabetic
         this.isDoesPhysicalActivity = false;
         this.generalHealth = "";
         this.hoursSlept = 0;
@@ -128,11 +128,11 @@ public class PatientData {
         this.race = race;
     }
 
-    public boolean isDiabetic() {
+    public int isDiabetic() {
         return isDiabetic;
     }
 
-    public void setDiabetic(boolean diabetic) {
+    public void setDiabetic(int diabetic) {
         isDiabetic = diabetic;
     }
 
