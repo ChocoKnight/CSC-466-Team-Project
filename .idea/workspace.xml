@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c08a7250-e498-474f-9e3c-545dd24fb68c" name="Changes" comment="finished the tree building and fixed print function in tree class" />
+    <list default="true" id="c08a7250-e498-474f-9e3c-545dd24fb68c" name="Changes" comment="patient heart data">
+      <change afterPath="$PROJECT_DIR$/src/DataProcessor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Lab7.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lab7.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PatientData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PatientData.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,6 +23,26 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <excluded-from-favorite>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="master" />
+              </list>
+            </value>
+          </entry>
+          <entry type="REMOTE">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="origin/master" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </excluded-from-favorite>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="master" />
@@ -54,11 +79,13 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Application.Lab7.executor": "Run",
+    "Application.Lab7.executor": "Debug",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/College/Cal Poly Slo/3. Junior Year/Quarter 3/CSC 466/CSC 466 Team Project/files",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -67,6 +94,11 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\College\Cal Poly Slo\3. Junior Year\Quarter 3\CSC 466\CSC 466 Team Project\files" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -76,7 +108,7 @@
       <option name="presentableId" value="Default" />
       <updated>1717007109744</updated>
       <workItem from="1717012157518" duration="2479000" />
-      <workItem from="1717027028997" duration="2263000" />
+      <workItem from="1717027028997" duration="1631000" />
     </task>
     <task id="LOCAL-00001" summary="adding files">
       <option name="closed" value="true" />
@@ -94,21 +126,63 @@
       <option name="project" value="LOCAL" />
       <updated>1717013120947</updated>
     </task>
-    <task id="LOCAL-00003" summary="finished the tree building and fixed print function in tree class">
+    <task id="LOCAL-00003" summary="doing parsing for heart disease data for 2020 data">
       <option name="closed" value="true" />
-      <created>1717028698665</created>
+      <created>1717055054080</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1717028698665</updated>
+      <updated>1717055054080</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="heart data">
+      <option name="closed" value="true" />
+      <created>1717057231287</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1717057231287</updated>
+    </task>
+    <task id="LOCAL-00005" summary="patient heart data">
+      <option name="closed" value="true" />
+      <created>1717057831683</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1717057831683</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/master" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="*" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
@@ -123,21 +197,27 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="adding files" />
     <MESSAGE value="added making tree. prolly needs to be debugged" />
-    <MESSAGE value="finished the tree building and fixed print function in tree class" />
-    <option name="LAST_COMMIT_MESSAGE" value="finished the tree building and fixed print function in tree class" />
+    <MESSAGE value="heart data" />
+    <MESSAGE value="patient heart data" />
+    <option name="LAST_COMMIT_MESSAGE" value="patient heart data" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Lab7.java</url>
-          <line>14</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Tree.java</url>
           <line>63</line>
           <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Lab7.java</url>
+          <line>16</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/DataProcessor.java</url>
+          <line>34</line>
+          <option name="timeStamp" value="11" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
