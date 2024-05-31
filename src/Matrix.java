@@ -9,6 +9,7 @@ public class Matrix {
 
     public Matrix(ArrayList<ArrayList<Integer>> data){
         this.matrix = data;
+        
     }
 
     private int findFrequency(int attribute, int value, ArrayList<Integer> rows){
