@@ -9,10 +9,12 @@ import java.util.*;
 
 public class Lab7 {
     public static void main (String[] args){
-        Matrix data = new Matrix(process("./files/data.txt"));
+        Matrix data = new Matrix(process("../files/data.txt"));
         System.out.println(data);
 
-        ArrayList<PatientData> patientData = DataProcessor.processHeartDiseaseData("./files/heart_2020_cleaned.csv");
+        ArrayList<PatientData> patientData = DataProcessor.processHeartDiseaseData("../files/heart_2020_cleaned.csv");
+        
+        String[] allAttributes = DataProcessor.getDataAttibutes("../files/heart_2020_cleaned.csv");
 
         Tree decisionTree = buildDecisionTree(data, getAttributes(data), getAllRows(data), 0, 100);
         System.out.println("");
