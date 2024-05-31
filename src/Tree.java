@@ -4,22 +4,22 @@ import java.util.HashMap;
 
 public class Tree {
     private int attribute;
-    private int attributeValue;
+    private String attributeValue;
     private ArrayList<Tree> children;
 //    private Tree parent;
-    private int label;
+    private String label;
 
-    public Tree(int attribute, int attributeValue) {
+    public Tree(int attribute, String attributeValue) {
         this.attribute = attribute;
         this.attributeValue = attributeValue;
         this.children = new ArrayList<>();
 //        this.parent = null;
-        this.label = -1; // Unset label
+        this.label = null; // Unset label
     }
 
-    public Tree(int label) {
+    public Tree(String label) {
         this.attribute = -1;
-        this.attributeValue = -1;
+        this.attributeValue = null;
         this.children = new ArrayList<>();
         this.label = label; // Unset label
     }
@@ -28,7 +28,7 @@ public class Tree {
         this.children.add(child);
     }
 
-    public void setLabel(int label) {
+    public void setLabel(String label) {
         this.label = label;
     }
 
@@ -36,7 +36,7 @@ public class Tree {
         return attribute;
     }
 
-    public int getAttributeValue() {
+    public String getAttributeValue() {
         return attributeValue;
     }
 
@@ -47,7 +47,7 @@ public class Tree {
         this.children = children;
     }
 
-    public int getLabel() {
+    public String getLabel() {
         return label;
     }
 //    public void setParent(Tree parent){
@@ -61,7 +61,7 @@ public class Tree {
     }
 
     public void printTreeHelper(int level) {
-        if (label != -1) {
+        if (label != null) {
             for (int i=0; i<level; i++){
                 System.out.print("      ");
             }
