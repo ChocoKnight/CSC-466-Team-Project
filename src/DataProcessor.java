@@ -86,4 +86,22 @@ public class DataProcessor {
 
         return attributes;
     }
+
+    public static int getLength(String fileName) {
+        int length = 0;
+
+        try {
+            Scanner scanner = new Scanner(new File(fileName));
+
+            while(scanner.hasNextLine()) {
+                scanner.nextLine();
+                length++;
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
+
+        return length;
+    }
 }
