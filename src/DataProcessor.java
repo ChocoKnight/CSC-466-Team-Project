@@ -23,14 +23,12 @@ public class DataProcessor {
                 patientData.setSmoking(Boolean.parseBoolean(lineSplit[2]));
                 patientData.setDrinksAlcohol(Boolean.parseBoolean(lineSplit[3]));
                 patientData.setHasHadStroke(Boolean.parseBoolean(lineSplit[4]));
-                patientData.setPhysicalHealthDays(Double.parseDouble(lineSplit[5]));
-                patientData.setMentalHealthDays(Double.parseDouble(lineSplit[6]));
+                patientData.setBadPhysicalHealthLast30Days(Double.parseDouble(lineSplit[5]));
+                patientData.setBadMentalHealthLast30Days(Double.parseDouble(lineSplit[6]));
                 patientData.setHasDifficultyWalking(Boolean.parseBoolean(lineSplit[7]));
                 patientData.setSex(lineSplit[8]);
                 patientData.setAgeCategory(lineSplit[9]);
                 patientData.setRace(lineSplit[10]);
-
-                String word = lineSplit[11] + lineSplit[12];
 
                 if((lineSplit[11] + lineSplit[12]).equals("\"No borderline diabetes\"")) {
 
@@ -46,8 +44,10 @@ public class DataProcessor {
 
                     if(lineSplit[11].equals("No")) {
                         patientData.setDiabetic(0);
-                    } else {
+                    } else if(lineSplit[11].equals("Yes")){
                         patientData.setDiabetic(2);
+                    } else {
+                        patientData.setDiabetic(3);
                     }
 
                     patientData.setDoesPhysicalActivity(Boolean.parseBoolean(lineSplit[12]));
@@ -66,5 +66,9 @@ public class DataProcessor {
         }
 
         return patientDataArrayList;
+    }
+
+    public static ArrayList<ArrayList<String>> convertPatientDataIntoMatrix() {
+        return null;
     }
 }

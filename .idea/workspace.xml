@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c08a7250-e498-474f-9e3c-545dd24fb68c" name="Changes" comment="patient heart data">
-      <change afterPath="$PROJECT_DIR$/src/DataProcessor.java" afterDir="false" />
+    <list default="true" id="c08a7250-e498-474f-9e3c-545dd24fb68c" name="Changes" comment="Categorize numeric data, constant array list category names">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Lab7.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lab7.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PatientData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PatientData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataProcessor.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,12 +56,22 @@
     &quot;assignee&quot;: &quot;ChocoKnight&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/ChocoKnight/CSC-466-Team-Project.git&quot;,
-    &quot;accountId&quot;: &quot;e41ad817-c07c-4fdf-a8c0-d2677fcec6ce&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/ChocoKnight/CSC-466-Team-Project.git",
+    "accountId": "e41ad817-c07c-4fdf-a8c0-d2677fcec6ce"
+  },
+  "recentNewPullRequestHead": {
+    "server": {
+      "useHttp": false,
+      "host": "github.com",
+      "port": null,
+      "suffix": null
+    },
+    "owner": "ChocoKnight",
+    "repository": "CSC-466-Team-Project"
   }
-}</component>
+}]]></component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -83,7 +93,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "#1 on Creating-Patient-Data-Matrix",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/College/Cal Poly Slo/3. Junior Year/Quarter 3/CSC 466/CSC 466 Team Project/files",
     "node.js.detected.package.eslint": "true",
@@ -150,7 +160,23 @@
       <option name="project" value="LOCAL" />
       <updated>1717057831683</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="processing data">
+      <option name="closed" value="true" />
+      <created>1717058706506</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1717058706506</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Categorize numeric data, constant array list category names">
+      <option name="closed" value="true" />
+      <created>1717290486079</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1717290486079</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -199,7 +225,9 @@
     <MESSAGE value="added making tree. prolly needs to be debugged" />
     <MESSAGE value="heart data" />
     <MESSAGE value="patient heart data" />
-    <option name="LAST_COMMIT_MESSAGE" value="patient heart data" />
+    <MESSAGE value="processing data" />
+    <MESSAGE value="Categorize numeric data, constant array list category names" />
+    <option name="LAST_COMMIT_MESSAGE" value="Categorize numeric data, constant array list category names" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -208,16 +236,6 @@
           <url>file://$PROJECT_DIR$/src/Tree.java</url>
           <line>63</line>
           <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Lab7.java</url>
-          <line>16</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/DataProcessor.java</url>
-          <line>34</line>
-          <option name="timeStamp" value="11" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
