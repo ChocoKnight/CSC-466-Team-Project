@@ -67,8 +67,4 @@ public class DataProcessor {
 
         return patientDataArrayList;
     }
-
-    public static ArrayList<ArrayList<String>> convertPatientDataIntoMatrix() {
-        return null;
-    }
 }
