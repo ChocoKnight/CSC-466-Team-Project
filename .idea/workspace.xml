@@ -60,6 +60,16 @@
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/ChocoKnight/CSC-466-Team-Project.git&quot;,
     &quot;accountId&quot;: &quot;e41ad817-c07c-4fdf-a8c0-d2677fcec6ce&quot;
+  },
+  &quot;recentNewPullRequestHead&quot;: {
+    &quot;server&quot;: {
+      &quot;useHttp&quot;: false,
+      &quot;host&quot;: &quot;github.com&quot;,
+      &quot;port&quot;: null,
+      &quot;suffix&quot;: null
+    },
+    &quot;owner&quot;: &quot;ChocoKnight&quot;,
+    &quot;repository&quot;: &quot;CSC-466-Team-Project&quot;
   }
 }</component>
   <component name="MarkdownSettingsMigration">
@@ -151,7 +161,31 @@
       <option name="project" value="LOCAL" />
       <updated>1717057831683</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="processing data">
+      <option name="closed" value="true" />
+      <created>1717058706506</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1717058706506</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Categorize numeric data, constant array list category names">
+      <option name="closed" value="true" />
+      <created>1717290486079</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1717290486079</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Categorize numeric data, constant array list category names">
+      <option name="closed" value="true" />
+      <created>1717291979231</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1717291979231</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -200,7 +234,9 @@
     <MESSAGE value="added making tree. prolly needs to be debugged" />
     <MESSAGE value="heart data" />
     <MESSAGE value="patient heart data" />
-    <option name="LAST_COMMIT_MESSAGE" value="patient heart data" />
+    <MESSAGE value="processing data" />
+    <MESSAGE value="Categorize numeric data, constant array list category names" />
+    <option name="LAST_COMMIT_MESSAGE" value="Categorize numeric data, constant array list category names" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
