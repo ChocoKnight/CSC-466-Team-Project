@@ -62,11 +62,23 @@ public class DataProcessor {
                 patientDataArrayList.add(patientData);
             }
 
+            scanner.close();
+
         } catch (Exception e) {
             System.out.println("Error: " + e);
         }
 
         return patientDataArrayList;
+    }
+
+    public static Matrix turnPatientDataIntoMatrix(ArrayList<PatientData> patientDataArrayList) {
+        ArrayList<ArrayList<String>> patientDataArrayListMatrix = new ArrayList<>();
+
+        for(PatientData patientData : patientDataArrayList) {
+            patientDataArrayListMatrix.add(PatientData.getPatientDataArrayList(patientData));
+        }
+
+        return new Matrix(patientDataArrayListMatrix);
     }
 
 
