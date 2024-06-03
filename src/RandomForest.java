@@ -91,4 +91,10 @@ public class RandomForest {
         return randomDataPointRows;
     }
 
+
+    public String predict(ArrayList<String> patient){
+
+        return "hi, needs to be implemented";
+    }
+
 }

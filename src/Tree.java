@@ -20,7 +20,7 @@ public class Tree {
         this.attribute = -1;
         this.attributeValue = null;
         this.children = new ArrayList<>();
-        this.label = label; // Unset label
+        this.label = label;
     }
 
     public void addChild(Tree child) {
@@ -105,5 +105,21 @@ public class Tree {
             return "Heart Disease = " + label;
         }
         return PatientData.getPatientDataArrayListIndexCategoryName(attribute) + " = " + attributeValue;
+    }
+
+    public String predict(ArrayList<String> input, String[] attributes){
+        // either root or label node
+        if (this.attribute == -1){
+            if (this.label == null){
+                return "root";
+            } else {
+                return this.label;
+            }
+        }
+
+        for (Tree child : children){
+
+        }
+        return "hi";
     }
 }
