@@ -1,6 +1,7 @@
 import javax.xml.crypto.Data;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 
 public class RandomForest {
     public static ArrayList<Tree> forest;
@@ -92,9 +93,20 @@ public class RandomForest {
     }
 
 
-    public String predict(ArrayList<String> patient){
+    public static String predict(ArrayList<Tree> forest, ArrayList<String> patient){
 
         return "hi, needs to be implemented";
     }
 
+    public static ArrayList<Double> precisionRecallF1Score(Matrix data, ArrayList<Tree> forest) {
+        ArrayList<Double> precisionRecallF1Score = new ArrayList<>();
+
+        HashMap<String, String> forestResult = new HashMap<>();
+
+        for(ArrayList<String> dataEntry : data.getMatrix()) {
+            String forestPrediction = RandomForest.predict(forest, dataEntry);
+        }
+
+        return precisionRecallF1Score;
+    }
 }
