@@ -82,7 +82,7 @@ public class RandomForest {
         for (int j = 0; j < rowCount; j++) {
             int selectedRow = (int) Math.floor(Math.random() * data.getMatrix().size());
             // loop to ensure that no duplicate rowNums are present in the randomly selected rows (can make this an option for sampling with replacement)
-            while (withoutReplacement && randomDataPointRows.contains(selectedRow)){
+            while (withoutReplacement && randomDataPointRows.contains(selectedRow)){        // if withoutReplacement is set to false, this loop is skipped everytime so we can have duplicate rows in sample (sampling with replacement)
                 selectedRow = (int) Math.floor(Math.random() * data.getMatrix().size());
             }
             randomDataPointRows.add(selectedRow);
