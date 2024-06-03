@@ -71,18 +71,18 @@ public class DataProcessor {
         return patientDataArrayList;
     }
 
-    public static Matrix turnPatientDataIntoMatrix(ArrayList<PatientData> patientDataArrayList) {
+    public static Matrix turnPatientDataIntoMatrix(ArrayList<PatientData> patientDataArrayList, String[] attributes) {
         ArrayList<ArrayList<String>> patientDataArrayListMatrix = new ArrayList<>();
 
         for(PatientData patientData : patientDataArrayList) {
             patientDataArrayListMatrix.add(PatientData.getPatientDataArrayList(patientData));
         }
 
-        return new Matrix(patientDataArrayListMatrix);
+        return new Matrix(patientDataArrayListMatrix, attributes);
     }
 
 
-    public static String[] getDataAttibutes(String fileName) {
+    public static String[] getDataAttributes(String fileName) {
 
         String[] attributes = new String[0];
 

@@ -3,6 +3,7 @@ import java.util.*;
 
 public class Matrix {
     private ArrayList<ArrayList<String>> matrix;
+    private String[] attributes;
 //    private ArrayList<ArrayList<Integer>> matrix;
     public Matrix(){
         this.matrix = new ArrayList<>();
@@ -11,9 +12,9 @@ public class Matrix {
 //    public Matrix(ArrayList<ArrayList<Integer>> data){
 //        this.matrix = data;
 //    }
-    public Matrix(ArrayList<ArrayList<String>> data){
+    public Matrix(ArrayList<ArrayList<String>> data, String[] attributes){
         this.matrix = data;
-        
+        this.attributes = attributes;
     }
 
     private int findFrequency(int attribute, String value, ArrayList<Integer> rows){
@@ -250,5 +251,28 @@ public class Matrix {
         System.out.println("Expected category: " + maxCategory);
 
         return maxCategory;
+    }
+
+    // gets the sublist of the data using only the specified rows and the attributes (randomAttributes have the indexes of the desired attributes)
+    public Matrix generateSubData(ArrayList<Integer> randomAttributes, ArrayList<Integer> randomDataPointRows){
+        ArrayList<ArrayList<String>> subData = new ArrayList<>();
+        String[] filteredAttributes = new String[randomAttributes.size()];
+
+        // filter out the desired rows and desired attributes
+        for (Integer rowNum : randomDataPointRows){
+            ArrayList<String> desiredRow = this.matrix.get(rowNum);
+            ArrayList<String> rowFilteredAttributes = new ArrayList<>();
+            for (Integer attributeIdx : randomAttributes){
+                rowFilteredAttributes.add(desiredRow.get(attributeIdx));
+            }
+            subData.add(rowFilteredAttributes);
+        }
+
+        // get the names of the attributes we filtered as well
+        for (int i=0; i<randomAttributes.size(); i++){      // loop through the list of indexes for attributes randomly selected
+            filteredAttributes[i] = this.attributes[randomAttributes.get(i)];       // get the name of the attribute randomly selected
+        }
+
+        return new Matrix(subData, filteredAttributes);
     }
 }
