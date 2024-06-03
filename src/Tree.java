@@ -1,4 +1,5 @@
 
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -6,14 +7,12 @@ public class Tree {
     private int attribute;
     private String attributeValue;
     private ArrayList<Tree> children;
-//    private Tree parent;
     private String label;
 
     public Tree(int attribute, String attributeValue) {
         this.attribute = attribute;
         this.attributeValue = attributeValue;
         this.children = new ArrayList<>();
-//        this.parent = null;
         this.label = null; // Unset label
     }
 
@@ -43,6 +42,7 @@ public class Tree {
     public ArrayList<Tree> getChildren() {
         return children;
     }
+
     public void setChildren(ArrayList<Tree> children){
         this.children = children;
     }
@@ -50,9 +50,6 @@ public class Tree {
     public String getLabel() {
         return label;
     }
-//    public void setParent(Tree parent){
-//        this.parent = parent;
-//    }
 
     public void printWholeTree(){
         for (Tree firstLayerNode : children){
@@ -72,10 +69,41 @@ public class Tree {
         for (int i=0; i<level; i++){
             System.out.print("      ");
         }
-        System.out.println("When attribute " + (attribute + 1) + " has value " + attributeValue);
+        System.out.println("When attribute " + (attribute) + " has value " + attributeValue);
 
         for (Tree node : children){
             node.printTreeHelper(level + 1);
         }
+    }
+
+    public static void printTree(Tree node, String prefix, boolean isLast) {
+        if (node == null) return;
+
+        if(node.attribute == -1 && node.label == null) {
+            System.out.println("Root");
+        } else {
+            System.out.print(prefix);
+            if (isLast) {
+                System.out.print("└── ");
+                prefix += "    ";
+            } else {
+                System.out.print("├── ");
+                prefix += "│   ";
+            }
+            System.out.println(node.toString());
+        }
+
+        for (int i = 0; i < node.getChildren().size(); i++) {
+            Tree child = node.getChildren().get(i);
+            printTree(child, prefix, i == node.getChildren().size() - 1);
+        }
+    }
+
+    @Override
+    public String toString() {
+        if (label != null) {
+            return "Heart Disease = " + label;
+        }
+        return PatientData.getPatientDataArrayListIndexCategoryName(attribute) + " = " + attributeValue;
     }
 }

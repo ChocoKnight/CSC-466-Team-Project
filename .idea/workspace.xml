@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c08a7250-e498-474f-9e3c-545dd24fb68c" name="Changes" comment="cleaned up RandomForest and made calls to patientData to set up input to randomForst">
+    <list default="true" id="c08a7250-e498-474f-9e3c-545dd24fb68c" name="Changes" comment="fixing boolean parsing">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CrossValidation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CrossValidation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataProcessor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Lab7.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lab7.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PatientData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PatientData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tree.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,12 +88,12 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Application.Lab7.executor": "Debug",
+    "Application.Lab7.executor": "Run",
     "Application.RandomForest.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "tree-visualization",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/College/Cal Poly Slo/3. Junior Year/Quarter 3/CSC 466/CSC 466 Team Project/files",
     "node.js.detected.package.eslint": "true",
@@ -110,6 +108,15 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\College\Cal Poly Slo\3. Junior Year\Quarter 3\CSC 466\CSC 466 Team Project\files" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Lab7" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Lab7" />
+      <module name="CSC 466 Team Project" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -196,7 +203,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717380080338</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="fixing boolean parsing">
+      <option name="closed" value="true" />
+      <created>1717390785918</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1717390785918</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -248,30 +263,16 @@
     <MESSAGE value="processing data" />
     <MESSAGE value="Categorize numeric data, constant array list category names" />
     <MESSAGE value="cleaned up RandomForest and made calls to patientData to set up input to randomForst" />
-    <option name="LAST_COMMIT_MESSAGE" value="cleaned up RandomForest and made calls to patientData to set up input to randomForst" />
+    <MESSAGE value="fixing boolean parsing" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixing boolean parsing" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Tree.java</url>
-          <line>63</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Lab7.java</url>
-          <line>146</line>
-          <option name="timeStamp" value="33" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Matrix.java</url>
-          <line>105</line>
-          <option name="timeStamp" value="40" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Lab7.java</url>
-          <line>16</line>
-          <option name="timeStamp" value="41" />
+          <line>30</line>
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -14,7 +14,7 @@ public class Lab7 {
 //        System.out.println(data);
 
         ArrayList<PatientData> patientData = DataProcessor.processHeartDiseaseData("files/heart_2020_cleaned.csv");
-        ArrayList<PatientData> sublist = new ArrayList<>(patientData.subList(0, 150000));
+        ArrayList<PatientData> sublist = new ArrayList<>(patientData.subList(0, 2000));
 
         String[] allAttributes = DataProcessor.getDataAttributes("files/heart_2020_cleaned.csv");
         Matrix patientMatrix = DataProcessor.turnPatientDataIntoMatrix(sublist, PatientData.attributes());
@@ -25,8 +25,10 @@ public class Lab7 {
 //        decisionTree.printWholeTree();
 
         Tree patientTree = buildDecisionTree(patientMatrix, getAttributes(patientMatrix), getAllRows(patientMatrix), 0, 100);
-////        System.out.println();
+        System.out.println();
 //        patientTree.printWholeTree();
+
+        Tree.printTree(patientTree, "", true);
     }
 
     public static ArrayList<ArrayList<String>> process (String filePath){
