@@ -172,7 +172,6 @@ public class Lab7 {
             }
         }
         return children;
-
     }
 
     public static ArrayList<Integer> getAttributes(Matrix data){
