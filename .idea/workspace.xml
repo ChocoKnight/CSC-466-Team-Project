@@ -6,10 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="c08a7250-e498-474f-9e3c-545dd24fb68c" name="Changes" comment="cleaned up RandomForest and made calls to patientData to set up input to randomForst">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CrossValidation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CrossValidation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DataProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataProcessor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Lab7.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lab7.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Matrix.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Matrix.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/RandomForest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RandomForest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PatientData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PatientData.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +90,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Application.Lab7.executor": "Run",
+    "Application.Lab7.executor": "Debug",
     "Application.RandomForest.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -260,8 +260,18 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Lab7.java</url>
-          <line>20</line>
-          <option name="timeStamp" value="8" />
+          <line>146</line>
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Matrix.java</url>
+          <line>105</line>
+          <option name="timeStamp" value="40" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Lab7.java</url>
+          <line>16</line>
+          <option name="timeStamp" value="41" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -271,5 +281,11 @@
         <PinnedItemInfo parentTag="Tree" memberName="attributeValue" />
       </pinned-members>
     </pin-to-top-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="patientTree.label" />
+        <watch expression="rowsForEachAttributeVal" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

@@ -2,8 +2,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class CrossValidation {
-    private int k;  
-    private RandomForest randomForest;  
+    private int k;
+    private RandomForest randomForest;
     private ArrayList<ArrayList<String>> patientDataArrays;  // List of patient data arrays
 
     public CrossValidation(int k, RandomForest randomForest, ArrayList<ArrayList<String>> patientDataArrays) {
@@ -45,7 +45,7 @@ public class CrossValidation {
         System.out.println("Average Accuracy: " + averageAccuracy);
     }
 
-//     private double validateModel(ArrayList<ArrayList<String>> validationData) {
+     private double validateModel(ArrayList<ArrayList<String>> validationData) {
 //         int correctPredictions = 0;
 
 //         for (ArrayList<String> patient : validationData) {
@@ -58,7 +58,8 @@ public class CrossValidation {
 //         }
 
 //         return (double) correctPredictions / validationData.size();
-//     }
-// }
+         return 0;
+     }
+}
 
 //Should work once we have a predict method

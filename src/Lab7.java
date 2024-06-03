@@ -9,25 +9,22 @@ import java.util.*;
 
 public class Lab7 {
     public static void main (String[] args){
-        Matrix data = new Matrix(process("files/data.txt"));
+//        Matrix data = new Matrix(process("files/data.txt"));
 //        Matrix data = new Matrix(process("D:\\College\\Com Sci\\Junior Year\\466\\CSC-466-Team-Project\\files\\data.txt"));
-        System.out.println(data);
+//        System.out.println(data);
 
         ArrayList<PatientData> patientData = DataProcessor.processHeartDiseaseData("files/heart_2020_cleaned.csv");
-        ArrayList<PatientData> sublist = new ArrayList<>(patientData.subList(0, 20000));
-        Matrix patientMatrix = DataProcessor.turnPatientDataIntoMatrix(sublist);
-        
-        String[] allAttributes = DataProcessor.getDataAttibutes("../files/heart_2020_cleaned.csv");
+        ArrayList<PatientData> sublist = new ArrayList<>(patientData.subList(0, 150000));
+
+        String[] allAttributes = DataProcessor.getDataAttributes("files/heart_2020_cleaned.csv");
+        Matrix patientMatrix = DataProcessor.turnPatientDataIntoMatrix(sublist, PatientData.attributes());
+//        Matrix patientMatrix = DataProcessor.turnPatientDataIntoMatrix(patientData, allAttributes);
 
 //        Tree decisionTree = buildDecisionTree(data, getAttributes(data), getAllRows(data), 0, 100);
         System.out.println();
 //        decisionTree.printWholeTree();
 
-        ArrayList<Integer> attributes = getAttributes(patientMatrix);
-        attributes.remove(13);
-        attributes.remove(5);
-        attributes.remove(4);
-        Tree patientTree = buildDecisionTree(patientMatrix, attributes, getAllRows(patientMatrix), 0, 100);
+        Tree patientTree = buildDecisionTree(patientMatrix, getAttributes(patientMatrix), getAllRows(patientMatrix), 0, 100);
 ////        System.out.println();
 //        patientTree.printWholeTree();
     }
@@ -141,7 +138,12 @@ public class Lab7 {
             for (Integer attribute : attributes){
                 double IGR = data.computeIGR(attribute, rows);      // compute the IGR if you were to split on this attribute for the given rows
                 IGRPerAttribute.set(attribute, IGR);    // add this IGR to the arrayList where index 0 represents the IGR of "attribute 1" (technically attribute 0 in data but printed as attribute 1)
+
+                if(attribute == 4 || attribute == 5) {
+                    IGRPerAttribute.set(attribute, -1.0);
+                }
             }
+
             double maxIGR = Collections.max(IGRPerAttribute);       // find best attribute to split on based on their IGRs
             if (maxIGR >= 0.01 && Math.abs(maxIGR - currentIGR) >= 0.01) {     // only split if the change in IGR is more than 0.01
                 int attributeToSplit = IGRPerAttribute.indexOf(maxIGR);
@@ -152,7 +154,7 @@ public class Lab7 {
                         System.out.print("      ");
                     }
                     int attributeToSplitPrint = attributeToSplit + 1;
-                    System.out.println(tabs + "When attribute " + attributeToSplitPrint + " has value " + node.getKey());
+                    System.out.println(tabs + "When attribute " + PatientData.getPatientDataArrayListIndexCategoryName(attributeToSplit) + " has value " + node.getKey());
                     // this stores the ACTUAL attribute number index (the column)
                     // for example, when we print the attribute in column index 2, we print out "attribute 3". This stores the 2 to keep it consistent
                     Tree treeNode = new Tree(attributeToSplit, node.getKey());     //make a new treeNode for this attribute and attributeVal
@@ -175,7 +177,7 @@ public class Lab7 {
                     System.out.print("      ");
                 }
                 String label = data.findMostCommonValue(rows, totalNumAttributes);
-                System.out.println(tabs + "value = " + label);
+                System.out.println(tabs + "Heart Disease = " + label);
 
                 Tree treeNode = new Tree(label);
                 children.add(treeNode);

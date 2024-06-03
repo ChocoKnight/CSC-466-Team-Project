@@ -137,6 +137,16 @@ public class PatientData {
         return patientDataArrayList;
     }
 
+    public static String[] attributes() {
+        return new String[]{"BMI", "Smokes", "Drinks Alcohol",
+                "Has a Stroke", "Over the Last 30 Days had bad Physical Health",
+                "Over the Last 30 Days had bad Mental Health", "Has Difficulty Walking",
+                "Sex", "Age Range", "Race", "Is Diabetic", "Does Physical Activity",
+                "General Health", "Hours Slept", "Has Asthma", "Has Kidney Disease",
+                "Has Skin Cancer", "Has Heart Disease"};
+    }
+
+
     public static String getPatientDataArrayListIndexCategoryName(int index) {
         if(index < 0 || index > 17) {
             return "Invalid Index";
