@@ -40,7 +40,7 @@ public class RandomForest {
 
         for (int i = 0; i < numTrees; i++){
             ArrayList<Integer> randomAttributes = generateRandomAttributes(data, percentAttributes);
-            ArrayList<Integer> randomRowNums = generateRandomRows(data, percentDataPoints);
+            ArrayList<Integer> randomRowNums = generateRandomRows(data, percentDataPoints, true);
 
             // make a new Matrix with the filtered rows and attributes
             Matrix filteredData = data.generateSubData(randomAttributes, randomRowNums);
@@ -55,23 +55,25 @@ public class RandomForest {
     }
 
     public static ArrayList<Integer> generateRandomAttributes(Matrix data, double percentAttributes){
-        int attributeCount = (int) Math.floor(data.getMatrix().get(0).size() * percentAttributes);           //get number of attributes to select
+        int totalAttributesCount = data.getAttributes().length;
+        int attributeCount = (int) Math.floor(totalAttributesCount * percentAttributes);           //get number of attributes to select
         // randomly select the attributes for each tree in the forest
         ArrayList<Integer> randomAttributes = new ArrayList<>();
         for (int j = 0; j < attributeCount; j++) {
-            int selectedAttribute = (int) Math.floor(Math.random() * data.getMatrix().get(0).size());
+            int selectedAttribute = (int) Math.floor(Math.random() * (totalAttributesCount - 1));       // totalAttrCount - 1 because we want to add in the last index (the label) manually in the end.
 
             // loop to ensure no attribute is selected more than once since it wouldnt make sense
             while (randomAttributes.contains(selectedAttribute)){
-                selectedAttribute = (int) Math.floor(Math.random() * data.getMatrix().get(0).size());
+                selectedAttribute = (int) Math.floor(Math.random() * (totalAttributesCount - 1));
             }
-            randomAttributes.add(selectedAttribute);
+            randomAttributes.add(totalAttributesCount);         // add the index for the
         }
+        randomAttributes.add(totalAttributesCount - 1);     // add the index with the label since we are only selecting attributes and the label is stored as one of the attributes in Matrix obj.
         Collections.sort(randomAttributes);     // sort the indexes we got
         return randomAttributes;
     }
 
-    public static ArrayList<Integer> generateRandomRows (Matrix data, double percentDataPoints){
+    public static ArrayList<Integer> generateRandomRows (Matrix data, double percentDataPoints, boolean withoutReplacement){
         int length = data.getMatrix().size();
         int rowCount = (int) Math.floor(length * percentDataPoints);            // get number of rows to select
 
@@ -80,7 +82,7 @@ public class RandomForest {
         for (int j = 0; j < rowCount; j++) {
             int selectedRow = (int) Math.floor(Math.random() * data.getMatrix().size());
             // loop to ensure that no duplicate rowNums are present in the randomly selected rows (can make this an option for sampling with replacement)
-            while (randomDataPointRows.contains(selectedRow)){
+            while (withoutReplacement && randomDataPointRows.contains(selectedRow)){
                 selectedRow = (int) Math.floor(Math.random() * data.getMatrix().size());
             }
             randomDataPointRows.add(selectedRow);

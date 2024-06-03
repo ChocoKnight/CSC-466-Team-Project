@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c08a7250-e498-474f-9e3c-545dd24fb68c" name="Changes" comment="cleaned up RandomForest and made calls to patientData to set up input to randomForst">
+    <list default="true" id="c08a7250-e498-474f-9e3c-545dd24fb68c" name="Changes" comment="finished randomForest. moved stuff around a lot and encapsulated a lot of code for readability. Added attributes array into matrix class">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Lab7.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lab7.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Matrix.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Matrix.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/RandomForest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RandomForest.java" afterDir="false" />
     </list>
@@ -87,25 +85,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Application.Lab7.executor": "Run",
-    "Application.RandomForest.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/College/Cal Poly Slo/3. Junior Year/Quarter 3/CSC 466/CSC 466 Team Project/files",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Application.Lab7.executor&quot;: &quot;Run&quot;,
+    &quot;Application.RandomForest.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/College/Cal Poly Slo/3. Junior Year/Quarter 3/CSC 466/CSC 466 Team Project/files&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\College\Cal Poly Slo\3. Junior Year\Quarter 3\CSC 466\CSC 466 Team Project\files" />
@@ -122,7 +120,9 @@
       <workItem from="1717012157518" duration="2479000" />
       <workItem from="1717027028997" duration="1631000" />
       <workItem from="1717178877166" duration="2688000" />
-      <workItem from="1717378895564" duration="6208000" />
+      <workItem from="1717378895564" duration="7187000" />
+      <workItem from="1717386666207" duration="2000" />
+      <workItem from="1717434765267" duration="444000" />
     </task>
     <task id="LOCAL-00001" summary="adding files">
       <option name="closed" value="true" />
@@ -196,7 +196,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717380080338</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="finished randomForest. moved stuff around a lot and encapsulated a lot of code for readability. Added attributes array into matrix class">
+      <option name="closed" value="true" />
+      <created>1717385192931</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1717385192931</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -248,7 +256,8 @@
     <MESSAGE value="processing data" />
     <MESSAGE value="Categorize numeric data, constant array list category names" />
     <MESSAGE value="cleaned up RandomForest and made calls to patientData to set up input to randomForst" />
-    <option name="LAST_COMMIT_MESSAGE" value="cleaned up RandomForest and made calls to patientData to set up input to randomForst" />
+    <MESSAGE value="finished randomForest. moved stuff around a lot and encapsulated a lot of code for readability. Added attributes array into matrix class" />
+    <option name="LAST_COMMIT_MESSAGE" value="finished randomForest. moved stuff around a lot and encapsulated a lot of code for readability. Added attributes array into matrix class" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

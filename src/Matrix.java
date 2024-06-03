@@ -33,6 +33,9 @@ public class Matrix {
     public ArrayList<ArrayList<String>> getMatrix(){
         return this.matrix;
     }
+    public String[] getAttributes(){
+        return this.attributes;
+    }
     private HashSet<String> findDifferentValues(int attribute, ArrayList<Integer> rows){
 //        HashSet<Integer> result = new HashSet<>();
         HashSet<String> result = new HashSet<>();
