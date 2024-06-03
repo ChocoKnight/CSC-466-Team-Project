@@ -3,6 +3,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class DataProcessor {
+
+    public static boolean parseBooleans(String bool) {
+        return bool.equals("Yes");
+    }
+
     public static ArrayList<PatientData> processHeartDiseaseData(String fileName) {
 
         ArrayList<PatientData> patientDataArrayList = new ArrayList<>();
@@ -19,14 +24,16 @@ public class DataProcessor {
 
                 PatientData patientData = new PatientData();
 
-                patientData.setHasHeartDisease(Boolean.parseBoolean(lineSplit[0]));
+                String smokes = lineSplit[2];
+
+                patientData.setHasHeartDisease(parseBooleans(lineSplit[0]));
                 patientData.setBMI(Double.parseDouble(lineSplit[1]));
-                patientData.setSmoking(Boolean.parseBoolean(lineSplit[2]));
-                patientData.setDrinksAlcohol(Boolean.parseBoolean(lineSplit[3]));
-                patientData.setHasHadStroke(Boolean.parseBoolean(lineSplit[4]));
+                patientData.setSmoking(parseBooleans(lineSplit[2]));
+                patientData.setDrinksAlcohol(parseBooleans(lineSplit[3]));
+                patientData.setHasHadStroke(parseBooleans(lineSplit[4]));
                 patientData.setBadPhysicalHealthLast30Days(Double.parseDouble(lineSplit[5]));
                 patientData.setBadMentalHealthLast30Days(Double.parseDouble(lineSplit[6]));
-                patientData.setHasDifficultyWalking(Boolean.parseBoolean(lineSplit[7]));
+                patientData.setHasDifficultyWalking(parseBooleans(lineSplit[7]));
                 patientData.setSex(lineSplit[8]);
                 patientData.setAgeCategory(lineSplit[9]);
                 patientData.setRace(lineSplit[10]);
@@ -35,12 +42,12 @@ public class DataProcessor {
 
                     patientData.setDiabetic(1);
 
-                    patientData.setDoesPhysicalActivity(Boolean.parseBoolean(lineSplit[13]));
+                    patientData.setDoesPhysicalActivity(parseBooleans(lineSplit[13]));
                     patientData.setGeneralHealth(lineSplit[14]);
                     patientData.setHoursSlept(Double.parseDouble(lineSplit[15]));
-                    patientData.setHasAsthma(Boolean.parseBoolean(lineSplit[16]));
-                    patientData.setHasKidneyDisease(Boolean.parseBoolean(lineSplit[17]));
-                    patientData.setHasSkinCancer(Boolean.parseBoolean(lineSplit[18]));
+                    patientData.setHasAsthma(parseBooleans(lineSplit[16]));
+                    patientData.setHasKidneyDisease(parseBooleans(lineSplit[17]));
+                    patientData.setHasSkinCancer(parseBooleans(lineSplit[18]));
                 } else {
 
                     if(lineSplit[11].equals("No")) {
@@ -51,12 +58,12 @@ public class DataProcessor {
                         patientData.setDiabetic(3);
                     }
 
-                    patientData.setDoesPhysicalActivity(Boolean.parseBoolean(lineSplit[12]));
+                    patientData.setDoesPhysicalActivity(parseBooleans(lineSplit[12]));
                     patientData.setGeneralHealth(lineSplit[13]);
                     patientData.setHoursSlept(Double.parseDouble(lineSplit[14]));
-                    patientData.setHasAsthma(Boolean.parseBoolean(lineSplit[15]));
-                    patientData.setHasKidneyDisease(Boolean.parseBoolean(lineSplit[16]));
-                    patientData.setHasSkinCancer(Boolean.parseBoolean(lineSplit[17]));
+                    patientData.setHasAsthma(parseBooleans(lineSplit[15]));
+                    patientData.setHasKidneyDisease(parseBooleans(lineSplit[16]));
+                    patientData.setHasSkinCancer(parseBooleans(lineSplit[17]));
                 }
 
                 patientDataArrayList.add(patientData);
