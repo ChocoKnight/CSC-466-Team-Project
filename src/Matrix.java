@@ -109,6 +109,10 @@ public class Matrix {
             denominator += (entriesInCateogory / rows.size()) * log2(entriesInCateogory / rows.size());
         }
 
+        if(denominator == 0) {
+            return 0;
+        }
+
         return gain / Math.abs(denominator);
     }
 

@@ -9,17 +9,27 @@ import java.util.*;
 
 public class Lab7 {
     public static void main (String[] args){
-        Matrix data = new Matrix(process("../files/data.txt"));
+        Matrix data = new Matrix(process("files/data.txt"));
 //        Matrix data = new Matrix(process("D:\\College\\Com Sci\\Junior Year\\466\\CSC-466-Team-Project\\files\\data.txt"));
         System.out.println(data);
 
-        ArrayList<PatientData> patientData = DataProcessor.processHeartDiseaseData("../files/heart_2020_cleaned.csv");
+        ArrayList<PatientData> patientData = DataProcessor.processHeartDiseaseData("files/heart_2020_cleaned.csv");
+        ArrayList<PatientData> sublist = new ArrayList<>(patientData.subList(0, 20000));
+        Matrix patientMatrix = DataProcessor.turnPatientDataIntoMatrix(sublist);
         
         String[] allAttributes = DataProcessor.getDataAttibutes("../files/heart_2020_cleaned.csv");
 
-        Tree decisionTree = buildDecisionTree(data, getAttributes(data), getAllRows(data), 0, 100);
-        System.out.println("");
-        decisionTree.printWholeTree();
+//        Tree decisionTree = buildDecisionTree(data, getAttributes(data), getAllRows(data), 0, 100);
+        System.out.println();
+//        decisionTree.printWholeTree();
+
+        ArrayList<Integer> attributes = getAttributes(patientMatrix);
+        attributes.remove(13);
+        attributes.remove(5);
+        attributes.remove(4);
+        Tree patientTree = buildDecisionTree(patientMatrix, attributes, getAllRows(patientMatrix), 0, 100);
+////        System.out.println();
+//        patientTree.printWholeTree();
     }
 
     public static ArrayList<ArrayList<String>> process (String filePath){
