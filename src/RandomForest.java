@@ -13,7 +13,7 @@ public class RandomForest {
         double percentDataPoints = 0.8;
         double percentAttributes = 0.8;
 
-        data = new Matrix(Lab7.process("../files/data.txt"));
+        data = new Matrix(Lab7.process("/./files/data.txt"));
         ArrayList<PatientData> patientDataObjs = DataProcessor.processHeartDiseaseData("../files/heart_2020_cleaned.csv");
         ArrayList<ArrayList<String>> patientDataArrays = generateFromPatientObjs(patientDataObjs);
 //        data = new Matrix(patientDataArrays);         // uncomment if we want to use actual dataset instead of the lab7 dataset
