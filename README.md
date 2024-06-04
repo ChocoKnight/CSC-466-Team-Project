@@ -1,4 +1,4 @@
-# CSC-466-Group-Projectt
+# CSC-466-Team-Project
 
 
 Things to do:
