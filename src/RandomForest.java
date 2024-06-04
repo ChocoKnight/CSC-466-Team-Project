@@ -91,7 +91,6 @@ public class RandomForest {
             randomDataPointRows.add(selectedRow);
         }
 
-//        System.out.println("randomRows generated");
         return randomDataPointRows;
     }
 
@@ -101,15 +100,59 @@ public class RandomForest {
         return "hi, needs to be implemented";
     }
 
-    public static ArrayList<Double> precisionRecallF1Score(Matrix data, ArrayList<Tree> forest) {
-        ArrayList<Double> precisionRecallF1Score = new ArrayList<>();
-
-        HashMap<String, String> forestResult = new HashMap<>();
+    public static HashMap<String, Integer> forestTPFPTNFPTable(Matrix data, ArrayList<Tree> forest) {
+        HashMap<String, Integer> forestResult = new HashMap<>();
+        forestResult.put("TruePositive", 0);
+        forestResult.put("FalsePositive", 0);
+        forestResult.put("TrueNegative", 0);
+        forestResult.put("FalseNegative", 0);
+        forestResult.put("NoResult", 0);
 
         for(ArrayList<String> dataEntry : data.getMatrix()) {
-            String forestPrediction = RandomForest.predict(forest, dataEntry);
+            String result = getResult(forest, dataEntry);
+
+            forestResult.replace(result, forestResult.get(result) + 1);
         }
 
-        return precisionRecallF1Score;
+        return forestResult;
+    }
+
+    private static String getResult(ArrayList<Tree> forest, ArrayList<String> dataEntry) {
+        String forestPrediction = RandomForest.predict(forest, dataEntry);
+
+        String result = "";
+        if(forestPrediction.equals("True")) {
+            if(dataEntry.get(dataEntry.size() - 1).equals("True")) {
+                // TP
+                result = "TruePositive";
+            } else{
+                // FP
+                result = "FalsePositive";
+            }
+        } else if (forestPrediction.equals("False")){
+            if(dataEntry.get(dataEntry.size() - 1).equals("True")) {
+                // FN
+                result = "FalseNegative";
+            } else {
+                // TN
+                result = "TrueNegative";
+            }
+        } else {
+            result = "NoResult";
+        }
+        return result;
+    }
+
+    private static double findPrecision(HashMap<String, Integer> forestTPFPTNFPTable) {
+        return (double) forestTPFPTNFPTable.get("TruePositive") / (forestTPFPTNFPTable.get("TruePositive") + forestTPFPTNFPTable.get("FalsePositive"));
+    }
+
+    private static double findRecall(HashMap<String, Integer> forestTPFPTNFPTable) {
+        return (double) forestTPFPTNFPTable.get("TruePositive") / (forestTPFPTNFPTable.get("TruePositive") + forestTPFPTNFPTable.get("FalseNegative"));
+    }
+
+    private static double findF1Score(double precision, double recall) {
+        double b = 1;
+        return ((1 + Math.pow(b, 2)) * precision * recall) / (Math.pow(b, 2) * precision + recall);
     }
 }
