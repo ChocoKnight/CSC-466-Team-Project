@@ -103,6 +103,7 @@ public class RandomForest {
         ArrayList<String> predictions = new ArrayList<>();
         for (Tree tree : forest){
             String prediction = tree.predict(patient);
+            predictions.add(prediction);
         }
 
         return findMostCommonPrediction(predictions);
