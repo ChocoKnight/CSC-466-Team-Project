@@ -21,7 +21,7 @@ public class RandomForest {
         Matrix data = DataProcessor.turnPatientDataIntoMatrix(sublist, allAttributes);       // uncomment to use heart data and not lab7 data
 
         forest = generateForest(numTrees, percentDataPoints, percentAttributes, data);
-        System.out.println(predict(forest,  data.getMatrix().get(0)));
+        System.out.println("Has Heart Disease = " + predict(forest,  data.getMatrix().get(0)));
         System.out.println();
 
 
@@ -55,7 +55,7 @@ public class RandomForest {
 
             // add it to forest
             newForest.add(decisionTree);
-            System.out.println("a tree made!");
+//            System.out.println("a tree made!");
         }
         return newForest;
     }

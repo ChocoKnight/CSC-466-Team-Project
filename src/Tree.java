@@ -116,12 +116,14 @@ public class Tree {
 
     public String predict(ArrayList<String> input){
         // either root or label node
-        if (this.attribute == -1){
-            if (this.label == null){
-                return "root";
-            } else {
-                return this.label;
-            }
+//        if (this.children.size() == 1 || this.attribute == -1 && this.label != null){
+//                return this.label;
+//
+//        }
+
+        // if we are at just before a label node
+        if (this.children.size() == 1){
+            return this.children.get(0).label;
         }
 
         for (Tree child : children){
@@ -131,7 +133,7 @@ public class Tree {
             int attributeIdxOriginal = PatientData.getAttributeIdx(this.attributeNames[attributeIdxTree]);
 
             // if the attribute value of the input matches the val of the node we are looking at, recurse
-            if (this.attributeValue.equals(input.get(attributeIdxOriginal))){
+            if (child.attributeValue.equals(input.get(attributeIdxOriginal))){
                 return child.predict(input);
             }
         }
