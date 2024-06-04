@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class PatientData {
 
@@ -146,6 +147,10 @@ public class PatientData {
                 "Has Skin Cancer", "Has Heart Disease"};
     }
 
+    public static int getAttributeIdx(String attributeName){
+        String[] allAttributes = attributes();
+        return Arrays.asList(allAttributes).indexOf(attributeName);
+    }
 
     public static String getPatientDataArrayListIndexCategoryName(int index) {
         if(index < 0 || index > 17) {

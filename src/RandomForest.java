@@ -9,22 +9,23 @@ public class RandomForest {
     public static void main(String[] args) {
         
         // HYPERPARAMETERS
-        int numTrees = 100;
+        int numTrees = 1000;
         double percentDataPoints = 0.8;
         double percentAttributes = 0.8;
 
-        Matrix data = new Matrix(Lab7.process("../files/data.txt"), new String[0]);
-        ArrayList<PatientData> patientDataObjs = DataProcessor.processHeartDiseaseData("../files/heart_2020_cleaned.csv");
-        String[] allAttributes = DataProcessor.getDataAttributes("../files/heart_2020_cleaned.csv");
-//        data = DataProcessor.turnPatientDataIntoMatrix(patientDataObjs, allAttributes);       // uncomment to use heart data and not lab7 data
+//        Matrix data = new Matrix(Lab7.process("../files/data.txt"), new String[0]);
+        ArrayList<PatientData> patientDataObjs = DataProcessor.processHeartDiseaseData("files/heart_2020_cleaned.csv");
+        ArrayList<PatientData> sublist = new ArrayList<>(patientDataObjs.subList(0, 20000));
+        String[] allAttributes = PatientData.attributes();
+        Matrix data = DataProcessor.turnPatientDataIntoMatrix(sublist, allAttributes);       // uncomment to use heart data and not lab7 data
 
         forest = generateForest(numTrees, percentDataPoints, percentAttributes, data);
 
 
         // below is probably not needed. safe to delete
 
-        Tree decisionTree = Lab7.buildDecisionTree(data, Lab7.getAttributes(data), Lab7.getAllRows(data), 0, 100);
-        //decisionTree.printWholeTree();
+//        Tree decisionTree = Lab7.buildDecisionTree(data, Lab7.getAttributes(data), Lab7.getAllRows(data), 0, 100);
+//        decisionTree.printWholeTree();
 
         //prolly just some code used to test or sth. not part of functionality
 //        int attributeCount = (int) Math.floor(allAttributes.length * percentAttributes);
@@ -51,6 +52,7 @@ public class RandomForest {
 
             // add it to forest
             newForest.add(decisionTree);
+            System.out.println("a tree made!");
         }
         return newForest;
     }
@@ -67,7 +69,7 @@ public class RandomForest {
             while (randomAttributes.contains(selectedAttribute)){
                 selectedAttribute = (int) Math.floor(Math.random() * (totalAttributesCount - 1));
             }
-            randomAttributes.add(totalAttributesCount);         // add the index for the
+            randomAttributes.add(selectedAttribute);
         }
         randomAttributes.add(totalAttributesCount - 1);     // add the index with the label since we are only selecting attributes and the label is stored as one of the attributes in Matrix obj.
         Collections.sort(randomAttributes);     // sort the indexes we got
@@ -89,6 +91,7 @@ public class RandomForest {
             randomDataPointRows.add(selectedRow);
         }
 
+//        System.out.println("randomRows generated");
         return randomDataPointRows;
     }
 
