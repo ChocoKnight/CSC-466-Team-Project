@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c08a7250-e498-474f-9e3c-545dd24fb68c" name="Changes" comment="starting precision recall and f1score">
+    <list default="true" id="c08a7250-e498-474f-9e3c-545dd24fb68c" name="Changes" comment="actually finished predict">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/RandomForest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RandomForest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tree.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,12 +89,12 @@
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "Application.Lab7.executor": "Run",
-    "Application.RandomForest.executor": "Debug",
+    "Application.RandomForest.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "extract.method.default.visibility": "private",
-    "git-widget-placeholder": "precision-recall-f1score",
+    "git-widget-placeholder": "predict__implementation",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/College/Cal Poly Slo/3. Junior Year/Quarter 3/CSC 466/CSC 466 Team Project/files",
     "node.js.detected.package.eslint": "true",
@@ -109,7 +110,7 @@
       <recent name="D:\College\Cal Poly Slo\3. Junior Year\Quarter 3\CSC 466\CSC 466 Team Project\files" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Lab7">
+  <component name="RunManager" selected="Application.RandomForest">
     <configuration name="Lab7" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Lab7" />
       <module name="CSC 466 Team Project" />
@@ -142,6 +143,8 @@
       <workItem from="1717178877166" duration="2688000" />
       <workItem from="1717378895564" duration="6208000" />
       <workItem from="1717438032981" duration="442000" />
+      <workItem from="1717469642005" duration="32000" />
+      <workItem from="1717469739866" duration="1736000" />
     </task>
     <task id="LOCAL-00001" summary="adding files">
       <option name="closed" value="true" />
@@ -239,7 +242,23 @@
       <option name="project" value="LOCAL" />
       <updated>1717439078181</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="finished predict for tree. added attributeNames string array to tree objs">
+      <option name="closed" value="true" />
+      <created>1717470108027</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1717470108027</updated>
+    </task>
+    <task id="LOCAL-00014" summary="actually finished predict">
+      <option name="closed" value="true" />
+      <created>1717470289903</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1717470289903</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -294,7 +313,9 @@
     <MESSAGE value="fixing boolean parsing" />
     <MESSAGE value="comment for replacment sampling code" />
     <MESSAGE value="starting precision recall and f1score" />
-    <option name="LAST_COMMIT_MESSAGE" value="starting precision recall and f1score" />
+    <MESSAGE value="finished predict for tree. added attributeNames string array to tree objs" />
+    <MESSAGE value="actually finished predict" />
+    <option name="LAST_COMMIT_MESSAGE" value="actually finished predict" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -304,12 +325,33 @@
           <line>38</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/RandomForest.java</url>
+          <line>24</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Tree.java</url>
+          <line>132</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Tree.java</url>
+          <line>119</line>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/RandomForest.java</url>
+          <line>104</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="Tree" memberName="attribute" />
         <PinnedItemInfo parentTag="Tree" memberName="attributeValue" />
+        <PinnedItemInfo parentTag="Tree" memberName="children" />
       </pinned-members>
     </pin-to-top-manager>
     <watches-manager>

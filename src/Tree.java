@@ -6,19 +6,22 @@ import java.util.HashMap;
 public class Tree {
     private int attribute;
     private String attributeValue;
+    private String[] attributeNames;
     private ArrayList<Tree> children;
     private String label;
 
-    public Tree(int attribute, String attributeValue) {
+    public Tree(int attribute, String attributeValue, String[] attributeNames) {
         this.attribute = attribute;
         this.attributeValue = attributeValue;
+        this.attributeNames = attributeNames;
         this.children = new ArrayList<>();
         this.label = null; // Unset label
     }
 
-    public Tree(String label) {
+    public Tree(String label, String[] attributeNames) {
         this.attribute = -1;
         this.attributeValue = null;
+        this.attributeNames = attributeNames;
         this.children = new ArrayList<>();
         this.label = label;
     }
@@ -104,22 +107,36 @@ public class Tree {
         if (label != null) {
             return "Heart Disease = " + label;
         }
-        return PatientData.getPatientDataArrayListIndexCategoryName(attribute) + " = " + attributeValue;
+//        return PatientData.getPatientDataArrayListIndexCategoryName(attribute) + " = " + attributeValue;
+        if (attribute < 0){
+            return "Invalid Index";
+        }
+        return this.attributeNames[attribute] + " = " + attributeValue;
     }
 
-    public String predict(ArrayList<String> input, String[] attributes){
+    public String predict(ArrayList<String> input){
         // either root or label node
-        if (this.attribute == -1){
-            if (this.label == null){
-                return "root";
-            } else {
-                return this.label;
-            }
+//        if (this.children.size() == 1 || this.attribute == -1 && this.label != null){
+//                return this.label;
+//
+//        }
+
+        // if we are at just before a label node
+        if (this.children.size() == 1){
+            return this.children.get(0).label;
         }
 
         for (Tree child : children){
+            int attributeIdxTree = child.attribute;
 
+            // get the index of the attribute we are looking at as it was in original dataset before sampling and filtering features
+            int attributeIdxOriginal = PatientData.getAttributeIdx(this.attributeNames[attributeIdxTree]);
+
+            // if the attribute value of the input matches the val of the node we are looking at, recurse
+            if (child.attributeValue.equals(input.get(attributeIdxOriginal))){
+                return child.predict(input);
+            }
         }
-        return "hi";
+        return "I dunno o7";
     }
 }

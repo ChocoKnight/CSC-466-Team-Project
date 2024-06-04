@@ -16,7 +16,7 @@ public class Lab7 {
         ArrayList<PatientData> patientData = DataProcessor.processHeartDiseaseData("files/heart_2020_cleaned.csv");
         ArrayList<PatientData> sublist = new ArrayList<>(patientData.subList(0, 2000));
 
-        String[] allAttributes = DataProcessor.getDataAttributes("files/heart_2020_cleaned.csv");
+        String[] allAttributes = PatientData.attributes();
         Matrix patientMatrix = DataProcessor.turnPatientDataIntoMatrix(sublist, PatientData.attributes());
 //        Matrix patientMatrix = DataProcessor.turnPatientDataIntoMatrix(patientData, allAttributes);
 
@@ -28,7 +28,7 @@ public class Lab7 {
         System.out.println();
 //        patientTree.printWholeTree();
 
-        Tree.printTree(patientTree, "", true);
+//        Tree.printTree(patientTree, "", true);
     }
 
     public static ArrayList<ArrayList<String>> process (String filePath){
@@ -55,7 +55,7 @@ public class Lab7 {
     }
 
     public static Tree buildDecisionTree(Matrix data, ArrayList<Integer> attributes, ArrayList<Integer> rows, int level, double currentIGR){
-        Tree newTree = new Tree(-1, null);
+        Tree newTree = new Tree(-1, null, data.getAttributes());
         newTree.setChildren(printDecisionTree(data, attributes, rows, level, currentIGR));
         return newTree;
     }
@@ -156,10 +156,10 @@ public class Lab7 {
                         System.out.print("      ");
                     }
                     int attributeToSplitPrint = attributeToSplit + 1;
-                    System.out.println(tabs + "When attribute " + PatientData.getPatientDataArrayListIndexCategoryName(attributeToSplit) + " has value " + node.getKey());
+//                    System.out.println(tabs + "When attribute " + PatientData.getPatientDataArrayListIndexCategoryName(attributeToSplit) + " has value " + node.getKey());
                     // this stores the ACTUAL attribute number index (the column)
                     // for example, when we print the attribute in column index 2, we print out "attribute 3". This stores the 2 to keep it consistent
-                    Tree treeNode = new Tree(attributeToSplit, node.getKey());     //make a new treeNode for this attribute and attributeVal
+                    Tree treeNode = new Tree(attributeToSplit, node.getKey(), data.getAttributes());     //make a new treeNode for this attribute and attributeVal
                     children.add(treeNode);
 
 
@@ -179,9 +179,9 @@ public class Lab7 {
                     System.out.print("      ");
                 }
                 String label = data.findMostCommonValue(rows, totalNumAttributes);
-                System.out.println(tabs + "Heart Disease = " + label);
+//                System.out.println(tabs + "Heart Disease = " + label);
 
-                Tree treeNode = new Tree(label);
+                Tree treeNode = new Tree(label, data.getAttributes());
                 children.add(treeNode);
             }
         }
