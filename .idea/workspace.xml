@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c08a7250-e498-474f-9e3c-545dd24fb68c" name="Changes" comment="starting precision recall and f1score">
+    <list default="true" id="c08a7250-e498-474f-9e3c-545dd24fb68c" name="Changes" comment="finished predict for tree. added attributeNames string array to tree objs">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/RandomForest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RandomForest.java" afterDir="false" />
     </list>
@@ -84,26 +84,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Application.Lab7.executor": "Run",
-    "Application.RandomForest.executor": "Debug",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "extract.method.default.visibility": "private",
-    "git-widget-placeholder": "precision-recall-f1score",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/College/Cal Poly Slo/3. Junior Year/Quarter 3/CSC 466/CSC 466 Team Project/files",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Application.Lab7.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.RandomForest.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;predict__implementation&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/College/Cal Poly Slo/3. Junior Year/Quarter 3/CSC 466/CSC 466 Team Project/files&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\College\Cal Poly Slo\3. Junior Year\Quarter 3\CSC 466\CSC 466 Team Project\files" />
@@ -142,6 +142,8 @@
       <workItem from="1717178877166" duration="2688000" />
       <workItem from="1717378895564" duration="6208000" />
       <workItem from="1717438032981" duration="442000" />
+      <workItem from="1717469642005" duration="32000" />
+      <workItem from="1717469739866" duration="317000" />
     </task>
     <task id="LOCAL-00001" summary="adding files">
       <option name="closed" value="true" />
@@ -304,12 +306,18 @@
           <line>38</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/RandomForest.java</url>
+          <line>24</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="Tree" memberName="attribute" />
         <PinnedItemInfo parentTag="Tree" memberName="attributeValue" />
+        <PinnedItemInfo parentTag="Tree" memberName="children" />
       </pinned-members>
     </pin-to-top-manager>
     <watches-manager>

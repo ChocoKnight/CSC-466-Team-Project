@@ -2,6 +2,7 @@ import javax.xml.crypto.Data;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Map;
 
 public class RandomForest {
     public static ArrayList<Tree> forest;
@@ -15,11 +16,13 @@ public class RandomForest {
 
 //        Matrix data = new Matrix(Lab7.process("../files/data.txt"), new String[0]);
         ArrayList<PatientData> patientDataObjs = DataProcessor.processHeartDiseaseData("files/heart_2020_cleaned.csv");
-        ArrayList<PatientData> sublist = new ArrayList<>(patientDataObjs.subList(0, 20000));
+        ArrayList<PatientData> sublist = new ArrayList<>(patientDataObjs.subList(0, 2000));
         String[] allAttributes = PatientData.attributes();
         Matrix data = DataProcessor.turnPatientDataIntoMatrix(sublist, allAttributes);       // uncomment to use heart data and not lab7 data
 
         forest = generateForest(numTrees, percentDataPoints, percentAttributes, data);
+        System.out.println(predict(forest,  data.getMatrix().get(0)));
+        System.out.println();
 
 
         // below is probably not needed. safe to delete
@@ -97,7 +100,22 @@ public class RandomForest {
 
     public static String predict(ArrayList<Tree> forest, ArrayList<String> patient){
 
-        return "hi, needs to be implemented";
+        ArrayList<String> predictions = new ArrayList<>();
+        for (Tree tree : forest){
+            String prediction = tree.predict(patient);
+        }
+
+        return findMostCommonPrediction(predictions);
+    }
+
+    public static String findMostCommonPrediction(ArrayList<String> predictions){
+        HashMap<String, Integer> predictionCounts = new HashMap<>();
+
+        for (String prediction : predictions){
+            predictionCounts.put(prediction, predictionCounts.getOrDefault(prediction, 0) + 1);
+        }
+
+        return Collections.max(predictionCounts.entrySet(), Map.Entry.comparingByValue()).getKey();
     }
 
     public static HashMap<String, Integer> forestTPFPTNFPTable(Matrix data, ArrayList<Tree> forest) {
