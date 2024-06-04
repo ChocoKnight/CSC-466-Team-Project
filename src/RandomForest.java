@@ -16,13 +16,22 @@ public class RandomForest {
 
 //        Matrix data = new Matrix(Lab7.process("../files/data.txt"), new String[0]);
         ArrayList<PatientData> patientDataObjs = DataProcessor.processHeartDiseaseData("files/heart_2020_cleaned.csv");
-        ArrayList<PatientData> sublist = new ArrayList<>(patientDataObjs.subList(0, 2000));
+        ArrayList<PatientData> sublist = new ArrayList<>(patientDataObjs.subList(0, 5000));
         String[] allAttributes = PatientData.attributes();
         Matrix data = DataProcessor.turnPatientDataIntoMatrix(sublist, allAttributes);       // uncomment to use heart data and not lab7 data
 
-        forest = generateForest(numTrees, percentDataPoints, percentAttributes, data);
-        System.out.println("Has Heart Disease = " + predict(forest,  data.getMatrix().get(0)));
-        System.out.println();
+        // forest = generateForest(numTrees, percentDataPoints, percentAttributes, data);
+        // System.out.println("Has Heart Disease = " + predict(forest,  data.getMatrix().get(1500)));
+        // System.out.println();
+
+        //ArrayList<PatientData> patientDataObjs = DataProcessor.processHeartDiseaseData("files/heart_2020_cleaned.csv");
+
+        // Initialize RandomForest object
+        RandomForest randomForest = new RandomForest();
+    
+        // Perform hyperparameter tuning and testing
+        HyperparameterTuning hyperparameterTuning = new HyperparameterTuning(sublist, allAttributes);
+        hyperparameterTuning.performHyperparameterTuning();
 
 
         // below is probably not needed. safe to delete
