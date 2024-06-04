@@ -2,13 +2,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
 
 public class HyperparameterTuning {
     private ArrayList<PatientData> patientDataObjs;
     private String[] allAttributes;
-    private double bestAccuracy;
+    private double bestF1Score;
     private int bestNumTrees;
     private double bestPercentDataPoints;
     private double bestPercentAttributes;
@@ -16,7 +14,7 @@ public class HyperparameterTuning {
     public HyperparameterTuning(ArrayList<PatientData> patientDataObjs, String[] allAttributes) {
         this.patientDataObjs = patientDataObjs;
         this.allAttributes = allAttributes;
-        this.bestAccuracy = 0.0;
+        this.bestF1Score = 0.0;
         this.bestNumTrees = 0;
         this.bestPercentDataPoints = 0.0;
         this.bestPercentAttributes = 0.0;
@@ -51,17 +49,17 @@ public class HyperparameterTuning {
         Matrix testingMatrix = DataProcessor.turnPatientDataIntoMatrix(testingData, allAttributes);
 
         // Hyperparameter tuning
-        int[] numTreesOptions = {10};
-        double[] percentDataPointsOptions = {0.5};
-        double[] percentAttributesOptions = {0.5};
+        int[] numTreesOptions = {100};
+        double[] percentDataPointsOptions = {0.4, 0.5, 0.6, 0.7, 0.8};
+        double[] percentAttributesOptions = {0.5, 0.6, 0.7, 0.8, 0.9};
 
         for (int numTrees : numTreesOptions) {
             for (double percentDataPoints : percentDataPointsOptions) {
                 for (double percentAttributes : percentAttributesOptions) {
                     ArrayList<Tree> forest = RandomForest.generateForest(numTrees, percentDataPoints, percentAttributes, trainingMatrix);
-                    double accuracy = validateModel(forest, validationMatrix);
-                    if (accuracy > bestAccuracy) {
-                        bestAccuracy = accuracy;
+                    double f1Score = validateModel(forest, validationMatrix);
+                    if (f1Score > bestF1Score) {
+                        bestF1Score = f1Score;
                         bestNumTrees = numTrees;
                         bestPercentDataPoints = percentDataPoints;
                         bestPercentAttributes = percentAttributes;
@@ -89,16 +87,35 @@ public class HyperparameterTuning {
     }
 
     private double validateModel(ArrayList<Tree> forest, Matrix validationMatrix) {
-        int correctPredictions = 0;
+        int truePositive = 0;
+        int falsePositive = 0;
+        int trueNegative = 0;
+        int falseNegative = 0;
+
         for (ArrayList<String> dataEntry : validationMatrix.getMatrix()) {
             String actualLabel = dataEntry.get(dataEntry.size() - 1); // Assuming the last element is the label
             String predictedLabel = RandomForest.predict(forest, dataEntry);
 
-            if (actualLabel.equals(predictedLabel)) {
-                correctPredictions++;
+            if (predictedLabel.equals("True")) {
+                if (actualLabel.equals("True")) {
+                    truePositive++;
+                } else {
+                    falsePositive++;
+                }
+            } else {
+                if (actualLabel.equals("True")) {
+                    falseNegative++;
+                } else {
+                    trueNegative++;
+                }
             }
         }
-        return (double) correctPredictions / validationMatrix.getMatrix().size();
+
+        double precision = (truePositive + falsePositive) > 0 ? (double) truePositive / (truePositive + falsePositive) : 0.0;
+        double recall = (truePositive + falseNegative) > 0 ? (double) truePositive / (truePositive + falseNegative) : 0.0;
+        double f1Score = (precision + recall) > 0 ? 2 * ((precision * recall) / (precision + recall)) : 0.0;
+
+        return f1Score;
     }
 
     private void testBestModel() {
@@ -122,8 +139,7 @@ public class HyperparameterTuning {
         Matrix testingMatrix = DataProcessor.turnPatientDataIntoMatrix(testingData, allAttributes);
 
         ArrayList<Tree> bestForest = RandomForest.generateForest(bestNumTrees, bestPercentDataPoints, bestPercentAttributes, testingMatrix);
-        double testAccuracy = validateModel(bestForest, testingMatrix);
-
-        System.out.println("Test Accuracy of Best Model: " + testAccuracy);
+        double testF1Score = validateModel(bestForest, testingMatrix);
+        System.out.println("Test F1 Score of Best Model: " + testF1Score);
     }
 }
