@@ -54,9 +54,10 @@ public class HyperparameterTuning {
         Matrix testingMatrix = DataProcessor.turnPatientDataIntoMatrix(testingData, allAttributes);
 
         // Hyperparameter tuning
-        int[] numTreesOptions = {1000};
+        int[] numTreesOptions = {400};
         double[] percentDataPointsOptions = {0.7};
         double[] percentAttributesOptions = {0.7};
+        //accuracy is 0.789
 
         for (int numTrees : numTreesOptions) {
             for (double percentDataPoints : percentDataPointsOptions) {
@@ -130,12 +131,13 @@ public class HyperparameterTuning {
 
         ArrayList<Tree> bestForest = RandomForest.generateForest(bestNumTrees, bestPercentDataPoints, bestPercentAttributes, testingMatrix);
         double testAccuracy = validateModel(bestForest, testingMatrix);
-
+      
         HashMap<String, Integer> precisionRecallF1Score = RandomForest.forestTPFPTNFPTable(testingMatrix, bestForest);
         double precision = RandomForest.findPrecision(precisionRecallF1Score);
         double recall = RandomForest.findRecall(precisionRecallF1Score);
 
         System.out.println("Best Hyper Parameters:");
+        System.out.println();
         System.out.println("Number of Trees: " + bestNumTrees);
         System.out.println("Percent Data Points: " + bestPercentDataPoints);
         System.out.println("Percent Attributes: " + bestPercentAttributes);
