@@ -45,15 +45,21 @@ public class HyperparameterTuning {
         }
         splitData(withHeartDisease, trainingData, validationData, testingData);
         splitData(withoutHeartDisease, trainingData, validationData, testingData);
+        // System.out.println(trainingData.size());
+        // System.out.println(validationData.size());
+        // System.out.println(testingData.size());
+        Collections.shuffle(trainingData);
+        Collections.shuffle(validationData);
+        Collections.shuffle(testingData);
 
         Matrix trainingMatrix = DataProcessor.turnPatientDataIntoMatrix(trainingData, allAttributes);
         Matrix validationMatrix = DataProcessor.turnPatientDataIntoMatrix(validationData, allAttributes);
         Matrix testingMatrix = DataProcessor.turnPatientDataIntoMatrix(testingData, allAttributes);
 
         // Hyperparameter tuning
-        int[] numTreesOptions = {10};
-        double[] percentDataPointsOptions = {0.5};
-        double[] percentAttributesOptions = {0.5};
+        int[] numTreesOptions = {1000};
+        double[] percentDataPointsOptions = {0.7};
+        double[] percentAttributesOptions = {0.7};
 
         for (int numTrees : numTreesOptions) {
             for (double percentDataPoints : percentDataPointsOptions) {
@@ -90,10 +96,13 @@ public class HyperparameterTuning {
 
     private double validateModel(ArrayList<Tree> forest, Matrix validationMatrix) {
         int correctPredictions = 0;
+        int hasheartdisease = 0;
         for (ArrayList<String> dataEntry : validationMatrix.getMatrix()) {
-            String actualLabel = dataEntry.get(dataEntry.size() - 1); // Assuming the last element is the label
+            String actualLabel = dataEntry.get(dataEntry.size() - 1); 
             String predictedLabel = RandomForest.predict(forest, dataEntry);
-
+            if (predictedLabel == "true"){
+                hasheartdisease++;
+            }
             if (actualLabel.equals(predictedLabel)) {
                 correctPredictions++;
             }
@@ -118,12 +127,16 @@ public class HyperparameterTuning {
 
         splitData(withHeartDisease, new ArrayList<>(), new ArrayList<>(), testingData);
         splitData(withoutHeartDisease, new ArrayList<>(), new ArrayList<>(), testingData);
+        Collections.shuffle(testingData);
 
         Matrix testingMatrix = DataProcessor.turnPatientDataIntoMatrix(testingData, allAttributes);
 
         ArrayList<Tree> bestForest = RandomForest.generateForest(bestNumTrees, bestPercentDataPoints, bestPercentAttributes, testingMatrix);
         double testAccuracy = validateModel(bestForest, testingMatrix);
-
+        System.out.println("Best Hyperparameters:");
+        System.out.println("Number of Trees: " + bestNumTrees);
+        System.out.println("Percent Data Points: " + bestPercentDataPoints);
+        System.out.println("Percent Attributes: " + bestPercentAttributes);
         System.out.println("Test Accuracy of Best Model: " + testAccuracy);
     }
 }
