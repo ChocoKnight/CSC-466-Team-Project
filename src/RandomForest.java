@@ -20,9 +20,10 @@ public class RandomForest {
         String[] allAttributes = PatientData.attributes();
         Matrix data = DataProcessor.turnPatientDataIntoMatrix(balancedData, allAttributes);  // Convert to matrix
 
-        // forest = generateForest(numTrees, percentDataPoints, percentAttributes, data);
-        // System.out.println("Has Heart Disease = " + predict(forest, data.getMatrix().get(0)));
-        // System.out.println();
+//         Collections.shuffle(patientDataObjs);  // Shuffle the entire list to get a random subset
+//         ArrayList<PatientData> sublist = new ArrayList<>(patientDataObjs.subList(0, 20000));
+//         String[] allAttributes = PatientData.attributes();
+//         Matrix data = DataProcessor.turnPatientDataIntoMatrix(sublist, allAttributes);
 
         // Perform hyperparameter tuning and testing
         HyperparameterTuning hyperparameterTuning = new HyperparameterTuning(balancedData, allAttributes);

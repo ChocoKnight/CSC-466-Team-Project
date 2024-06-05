@@ -107,7 +107,7 @@ public class Tree {
         if (label != null) {
             return "Heart Disease = " + label;
         }
-//        return PatientData.getPatientDataArrayListIndexCategoryName(attribute) + " = " + attributeValue;
+
         if (attribute < 0){
             return "Invalid Index";
         }
