@@ -72,9 +72,9 @@ public class Lab7 {
                 HashMap<String, ArrayList<Integer>> splitRows = data.split(attributeToSplit, rows);        // split the data based on attribute and store in map where map[attributeValue] = {rows related}
 
                 for (Map.Entry<String, ArrayList<Integer>> node : splitRows.entrySet()) {      // loop thorugh map[attributeValue] = {rows related} to go through all the nodes formed from split
-                    for (int i=0; i<level; i++){
-                        System.out.print("      ");
-                    }
+//                    for (int i=0; i<level; i++){
+//                        System.out.print("      ");
+//                    }
                     int attributeToSplitPrint = attributeToSplit + 1;
 
                     // this stores the ACTUAL attribute number index (the column)
@@ -95,9 +95,9 @@ public class Lab7 {
                 }
             }
             else{
-                for (int i=0; i<level; i++){
-                    System.out.print("      ");
-                }
+//                for (int i=0; i<level; i++){
+//                    System.out.print("      ");
+//                }
                 String label = data.findMostCommonValue(rows, totalNumAttributes);
 //                System.out.println(tabs + "Heart Disease = " + label);
 

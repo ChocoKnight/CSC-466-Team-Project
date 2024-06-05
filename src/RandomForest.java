@@ -1,4 +1,3 @@
-import javax.xml.crypto.Data;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -14,6 +13,10 @@ public class RandomForest {
         double percentAttributes = 0.8;
 
         ArrayList<PatientData> patientDataObjs = DataProcessor.processHeartDiseaseData("files/heart_2020_cleaned.csv");
+//         Collections.shuffle(patientDataObjs);  // Shuffle the entire list to get a random subset
+//         ArrayList<PatientData> sublist = new ArrayList<>(patientDataObjs.subList(0, 100));
+//         String[] allAttributes = PatientData.attributes();
+//         Matrix data = DataProcessor.turnPatientDataIntoMatrix(sublist, allAttributes);       // uncomment to use heart data and not lab7 data
         int totalPatients = 10000; // example value
         ArrayList<PatientData> balancedData = createBalancedPatientDataArray(patientDataObjs, totalPatients);
 
@@ -156,16 +159,16 @@ public class RandomForest {
         String forestPrediction = RandomForest.predict(forest, dataEntry);
 
         String result = "";
-        if(forestPrediction.equals("True")) {
-            if(dataEntry.get(dataEntry.size() - 1).equals("True")) {
+        if(forestPrediction.equals("true")) {
+            if(dataEntry.get(dataEntry.size() - 1).equals("true")) {
                 // TP
                 result = "TruePositive";
             } else{
                 // FP
                 result = "FalsePositive";
             }
-        } else if (forestPrediction.equals("False")){
-            if(dataEntry.get(dataEntry.size() - 1).equals("True")) {
+        } else if (forestPrediction.equals("false")){
+            if(dataEntry.get(dataEntry.size() - 1).equals("true")) {
                 // FN
                 result = "FalseNegative";
             } else {
@@ -178,15 +181,15 @@ public class RandomForest {
         return result;
     }
 
-    private static double findPrecision(HashMap<String, Integer> forestTPFPTNFPTable) {
+    public static double findPrecision(HashMap<String, Integer> forestTPFPTNFPTable) {
         return (double) forestTPFPTNFPTable.get("TruePositive") / (forestTPFPTNFPTable.get("TruePositive") + forestTPFPTNFPTable.get("FalsePositive"));
     }
 
-    private static double findRecall(HashMap<String, Integer> forestTPFPTNFPTable) {
+    public static double findRecall(HashMap<String, Integer> forestTPFPTNFPTable) {
         return (double) forestTPFPTNFPTable.get("TruePositive") / (forestTPFPTNFPTable.get("TruePositive") + forestTPFPTNFPTable.get("FalseNegative"));
     }
 
-    private static double findF1Score(double precision, double recall) {
+    public static double findF1Score(double precision, double recall) {
         double b = 1;
         return ((1 + Math.pow(b, 2)) * precision * recall) / (Math.pow(b, 2) * precision + recall);
     }
