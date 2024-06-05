@@ -1,13 +1,10 @@
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
 
 public class HyperparameterTuning {
-    private ArrayList<PatientData> patientDataObjs;
-    private String[] allAttributes;
+    private final ArrayList<PatientData> patientDataObjs;
+    private final String[] allAttributes;
     private double bestAccuracy;
     private int bestNumTrees;
     private double bestPercentDataPoints;
@@ -22,7 +19,7 @@ public class HyperparameterTuning {
         this.bestPercentAttributes = 0.0;
     }
 
-    public void performHyperparameterTuning() {
+    public void performHyperParameterTuning() {
         splitDataAndTuneParameters();
         testBestModel();
     }
@@ -133,10 +130,19 @@ public class HyperparameterTuning {
 
         ArrayList<Tree> bestForest = RandomForest.generateForest(bestNumTrees, bestPercentDataPoints, bestPercentAttributes, testingMatrix);
         double testAccuracy = validateModel(bestForest, testingMatrix);
-        System.out.println("Best Hyperparameters:");
+
+        HashMap<String, Integer> precisionRecallF1Score = RandomForest.forestTPFPTNFPTable(testingMatrix, bestForest);
+        double precision = RandomForest.findPrecision(precisionRecallF1Score);
+        double recall = RandomForest.findRecall(precisionRecallF1Score);
+
+        System.out.println("Best Hyper Parameters:");
         System.out.println("Number of Trees: " + bestNumTrees);
         System.out.println("Percent Data Points: " + bestPercentDataPoints);
         System.out.println("Percent Attributes: " + bestPercentAttributes);
         System.out.println("Test Accuracy of Best Model: " + testAccuracy);
+        System.out.println("Precision: " + precision);
+        System.out.println("Recall: " + recall);
+        System.out.println("F1 Score: " + RandomForest.findF1Score(precision, recall));
+
     }
 }
