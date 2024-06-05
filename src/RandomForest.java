@@ -6,31 +6,57 @@ import java.util.Map;
 
 public class RandomForest {
     public static ArrayList<Tree> forest;
-    
+
     public static void main(String[] args) {
-        
         // HYPERPARAMETERS
         int numTrees = 1000;
         double percentDataPoints = 0.8;
         double percentAttributes = 0.8;
 
-//        Matrix data = new Matrix(Lab7.process("../files/data.txt"), new String[0]);
         ArrayList<PatientData> patientDataObjs = DataProcessor.processHeartDiseaseData("files/heart_2020_cleaned.csv");
-        //ArrayList<PatientData> sublist = new ArrayList<>(patientDataObjs.subList(0, 10000));
+        int totalPatients = 10000; // example value
+        ArrayList<PatientData> balancedData = createBalancedPatientDataArray(patientDataObjs, totalPatients);
 
-        Collections.shuffle(patientDataObjs);  // Shuffle the entire list to get a random subset
-        ArrayList<PatientData> sublist = new ArrayList<>(patientDataObjs.subList(0, 20000));
         String[] allAttributes = PatientData.attributes();
-        Matrix data = DataProcessor.turnPatientDataIntoMatrix(sublist, allAttributes);
+        Matrix data = DataProcessor.turnPatientDataIntoMatrix(balancedData, allAttributes);  // Convert to matrix
 
-        //ArrayList<PatientData> patientDataObjs = DataProcessor.processHeartDiseaseData("files/heart_2020_cleaned.csv");
+//         Collections.shuffle(patientDataObjs);  // Shuffle the entire list to get a random subset
+//         ArrayList<PatientData> sublist = new ArrayList<>(patientDataObjs.subList(0, 20000));
+//         String[] allAttributes = PatientData.attributes();
+//         Matrix data = DataProcessor.turnPatientDataIntoMatrix(sublist, allAttributes);
 
-        // Initialize RandomForest object
-        RandomForest randomForest = new RandomForest();
-    
         // Perform hyperparameter tuning and testing
-        HyperparameterTuning hyperparameterTuning = new HyperparameterTuning(sublist, allAttributes);
+        HyperparameterTuning hyperparameterTuning = new HyperparameterTuning(balancedData, allAttributes);
         hyperparameterTuning.performHyperparameterTuning();
+    }
+
+    public static ArrayList<PatientData> createBalancedPatientDataArray(ArrayList<PatientData> patientDataObjs, int totalPatients) {
+        ArrayList<PatientData> withHeartDisease = new ArrayList<>();
+        ArrayList<PatientData> withoutHeartDisease = new ArrayList<>();
+
+        for (PatientData patient : patientDataObjs) {
+            if (patient.isHasHeartDisease()) {
+                withHeartDisease.add(patient);
+            } else {
+                withoutHeartDisease.add(patient);
+            }
+        }
+
+        Collections.shuffle(withHeartDisease);
+        Collections.shuffle(withoutHeartDisease);
+
+        int numberOfPatientsPerGroup = totalPatients / 2;
+
+        numberOfPatientsPerGroup = Math.min(numberOfPatientsPerGroup, withHeartDisease.size());
+        numberOfPatientsPerGroup = Math.min(numberOfPatientsPerGroup, withoutHeartDisease.size());
+
+        ArrayList<PatientData> balancedData = new ArrayList<>();
+        balancedData.addAll(withHeartDisease.subList(0, numberOfPatientsPerGroup));
+        balancedData.addAll(withoutHeartDisease.subList(0, numberOfPatientsPerGroup));
+
+        Collections.shuffle(balancedData);
+
+        return balancedData;
     }
 
     public static ArrayList<Tree> generateForest(int numTrees, double percentDataPoints, double percentAttributes, Matrix data){
@@ -48,7 +74,6 @@ public class RandomForest {
 
             // add it to forest
             newForest.add(decisionTree);
-//            System.out.println("a tree made!");
         }
         return newForest;
     }
@@ -90,9 +115,7 @@ public class RandomForest {
         return randomDataPointRows;
     }
 
-
     public static String predict(ArrayList<Tree> forest, ArrayList<String> patient){
-
         ArrayList<String> predictions = new ArrayList<>();
         for (Tree tree : forest){
             String prediction = tree.predict(patient);
