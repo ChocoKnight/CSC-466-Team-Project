@@ -16,7 +16,9 @@ public class RandomForest {
 
 //        Matrix data = new Matrix(Lab7.process("../files/data.txt"), new String[0]);
         ArrayList<PatientData> patientDataObjs = DataProcessor.processHeartDiseaseData("files/heart_2020_cleaned.csv");
-        ArrayList<PatientData> sublist = new ArrayList<>(patientDataObjs.subList(0, 5000));
+        //ArrayList<PatientData> sublist = new ArrayList<>(patientDataObjs.subList(0, 10000));
+        Collections.shuffle(patientDataObjs);  // Shuffle the entire list to get a random subset
+        ArrayList<PatientData> sublist = new ArrayList<>(patientDataObjs.subList(0, 20000));
         String[] allAttributes = PatientData.attributes();
         Matrix data = DataProcessor.turnPatientDataIntoMatrix(sublist, allAttributes);       // uncomment to use heart data and not lab7 data
 
