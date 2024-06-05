@@ -133,6 +133,7 @@ public class HyperparameterTuning {
 
         ArrayList<Tree> bestForest = RandomForest.generateForest(bestNumTrees, bestPercentDataPoints, bestPercentAttributes, testingMatrix);
         double testAccuracy = validateModel(bestForest, testingMatrix);
+        System.out.println();
         System.out.println("Best Hyperparameters:");
         System.out.println("Number of Trees: " + bestNumTrees);
         System.out.println("Percent Data Points: " + bestPercentDataPoints);

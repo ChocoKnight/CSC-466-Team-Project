@@ -4,14 +4,10 @@ import java.util.*;
 public class Matrix {
     private ArrayList<ArrayList<String>> matrix;
     private String[] attributes;
-//    private ArrayList<ArrayList<Integer>> matrix;
     public Matrix(){
         this.matrix = new ArrayList<>();
     }
 
-//    public Matrix(ArrayList<ArrayList<Integer>> data){
-//        this.matrix = data;
-//    }
     public Matrix(ArrayList<ArrayList<String>> data, String[] attributes){
         this.matrix = data;
         this.attributes = attributes;
@@ -21,8 +17,6 @@ public class Matrix {
         int freq = 0;
         for (Integer rowNum : rows){
             ArrayList<String> specifiedRow = this.matrix.get(rowNum);
-//            ArrayList<Integer> specifiedRow = this.matrix.get(rowNum);
-//            if (specifiedRow.get(attribute) == value)
             if (specifiedRow.get(attribute).equals(value)){
                 freq++;
             }
@@ -39,7 +33,6 @@ public class Matrix {
     }
 
     private HashSet<String> findDifferentValues(int attribute, ArrayList<Integer> rows){
-//        HashSet<Integer> result = new HashSet<>();
         HashSet<String> result = new HashSet<>();
         for (Integer rowNum : rows){
             result.add(this.matrix.get(rowNum).get(attribute));
@@ -60,10 +53,9 @@ public class Matrix {
     // calculating entropy for one of the options when we split on an attribute
     public double findEntropy(ArrayList<Integer> rows){
         double entropy = 0;
-//        HashMap<Integer, Integer> classesCount = new HashMap<>();
         HashMap<String, Integer> classesCount = new HashMap<>();
+
         for (Integer rowNum : rows){
-//            ArrayList<Integer> row = this.matrix.get(rowNum);
             ArrayList<String> row = this.matrix.get(rowNum);       // go through each of the specified rows
             // row.get(4) is the class (1,2,3) in our case. but we use a hashmap so we can support diff num of classes
             classesCount.put(row.get(4), classesCount.getOrDefault(row.get(4), 0) + 1);     // increment the counter for items in the class that the row belongs to
@@ -82,10 +74,8 @@ public class Matrix {
     // calculating entropy for one layer when we split on attribute
     private double findEntropy(int attribute, ArrayList<Integer> rows){
         double totalEntropy = 0;
-//        HashMap<Integer, ArrayList<Integer>> rowsForEachAttributeVal = split(attribute, rows);
         HashMap<String, ArrayList<Integer>> rowsForEachAttributeVal = split(attribute, rows);     // stores the row numbers per attribute category
 
-//        for (Map.Entry<Integer, ArrayList<Integer>> entry : rowsForEachAttributeVal.entrySet())
         for (Map.Entry<String, ArrayList<Integer>> entry : rowsForEachAttributeVal.entrySet()){
             ArrayList<Integer> rowsForCategory = entry.getValue();
             double entriesInCateogory = rowsForCategory.size();        // number of elements in the node after the split
@@ -96,7 +86,6 @@ public class Matrix {
     }
 
     private double findGain(int attribute, ArrayList<Integer> rows){
-        double gain = 0;
 
         double originalEntropy = findEntropy(rows);
         double splitEntropy = findEntropy(attribute, rows);
@@ -106,7 +95,6 @@ public class Matrix {
 
     public double computeIGR(int attribute, ArrayList<Integer> rows){
         double gain = findGain(attribute, rows);
-//        HashMap<Integer, ArrayList<Integer>> rowsForEachAttributeVal = split(attribute, rows);
         HashMap<String, ArrayList<Integer>> rowsForEachAttributeVal = split(attribute, rows);     // stores the row numbers per attribute category
         double denominator = 0;
 
@@ -123,12 +111,9 @@ public class Matrix {
     }
 
     public String findMostCommonValue(ArrayList<Integer> rows, int colOfClass){
-//        HashMap<Integer, Integer> valuesCounts = new HashMap<>();
         HashMap<String, Integer> valuesCounts = new HashMap<>();
         for (int i=0; i<this.matrix.size(); i++){
             if (rows.contains(i)){      // to ignore the rows not specified in parameter
-//                ArrayList<Integer> curRow = this.matrix.get(i);
-//                Integer value = curRow.get(colOfClass);
                 ArrayList<String> curRow = this.matrix.get(i);     // get the row
                 String value = curRow.get(colOfClass);
                 if (valuesCounts.containsKey(value)){
@@ -150,8 +135,6 @@ public class Matrix {
         HashMap<String, ArrayList<Integer>> rowsForEachAttributeVal = new HashMap<>();
 
         for (Integer rowNum : rows){
-//            ArrayList<Integer> row = this.matrix.get(rowNum);
-//            int attributeCategory = row.get(attribute);
             ArrayList<String> row = this.matrix.get(rowNum);
             String attributeCategory = row.get(attribute);         // get the cateogory that the row gets put under if split on given attribute
             if (rowsForEachAttributeVal.containsKey(attributeCategory)){        // if this attribute val is already seen before, just add the row to list of related rows
@@ -200,14 +183,11 @@ public class Matrix {
         int totalNumForCatgory = countRowsGivenCategory(category);
         int numConditionGivenCategory = 0;
 
-//        for (ArrayList<Integer> row : this.matrix)
         for (ArrayList<String> row : this.matrix){
-//            if (row.get(attributeIdx) == condition && row.get(categoryAttribute) == category)
             if (row.get(attributeIdx).equals(condition) && row.get(categoryAttribute).equals(category)){
                 numConditionGivenCategory++;
             }
         }
-//        HashSet<Integer> allValuesForAttribute = findDifferentValues(attributeIdx, findAllRows());
         HashSet<String> allValuesForAttribute = findDifferentValues(attributeIdx, findAllRows());
 
         prob = (double) (numConditionGivenCategory + (double) 1/this.matrix.size()) / (totalNumForCatgory + allValuesForAttribute.size() * (double) 1 / this.matrix.size());
@@ -220,9 +200,7 @@ public class Matrix {
         int categoryAttribute = getCategoryAttribute();
         int prob = 0;
 
-//        for (ArrayList<Integer> row : this.matrix){
         for (ArrayList<String> row : this.matrix){
-//            if (row.get(categoryAttribute) == category)
             if (row.get(categoryAttribute).equals(category)){
                 prob++;
             }
@@ -231,19 +209,14 @@ public class Matrix {
     }
 
     public String findCategory(ArrayList<String> row){
-//        HashMap<Integer, ArrayList<Integer>> rowsForEachAttributeVal = split(getCategoryAttribute(), findAllRows());
-//        HashMap<Integer, Double> probPerCategory = new HashMap<>();
-//        int maxCategory = -1;
         HashMap<String, ArrayList<Integer>> rowsForEachAttributeVal = split(getCategoryAttribute(), findAllRows());     // stores all the different categories in the dataset
         HashMap<String, Double> probPerCategory = new HashMap<>();
         String maxCategory = null;
         double maxProbability = 0;
-//        for (Map.Entry<Integer, ArrayList<Integer>> entry : rowsForEachAttributeVal.entrySet())
         for (Map.Entry<String, ArrayList<Integer>> entry : rowsForEachAttributeVal.entrySet()){
             probPerCategory.put(entry.getKey(), findProb(row, entry.getKey()));     // calculate probability of each category and add to hashmap
         }
 
-//        for (Map.Entry<Integer, Double> entry : probPerCategory.entrySet())
         for (Map.Entry<String, Double> entry : probPerCategory.entrySet()){
             System.out.println("For value " + entry.getKey() + ": Probability is: " + entry.getValue());
 

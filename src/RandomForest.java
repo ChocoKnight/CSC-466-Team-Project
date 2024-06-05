@@ -17,14 +17,11 @@ public class RandomForest {
 //        Matrix data = new Matrix(Lab7.process("../files/data.txt"), new String[0]);
         ArrayList<PatientData> patientDataObjs = DataProcessor.processHeartDiseaseData("files/heart_2020_cleaned.csv");
         //ArrayList<PatientData> sublist = new ArrayList<>(patientDataObjs.subList(0, 10000));
+
         Collections.shuffle(patientDataObjs);  // Shuffle the entire list to get a random subset
         ArrayList<PatientData> sublist = new ArrayList<>(patientDataObjs.subList(0, 20000));
         String[] allAttributes = PatientData.attributes();
-        Matrix data = DataProcessor.turnPatientDataIntoMatrix(sublist, allAttributes);       // uncomment to use heart data and not lab7 data
-
-        // forest = generateForest(numTrees, percentDataPoints, percentAttributes, data);
-        // System.out.println("Has Heart Disease = " + predict(forest,  data.getMatrix().get(1500)));
-        // System.out.println();
+        Matrix data = DataProcessor.turnPatientDataIntoMatrix(sublist, allAttributes);
 
         //ArrayList<PatientData> patientDataObjs = DataProcessor.processHeartDiseaseData("files/heart_2020_cleaned.csv");
 
@@ -34,21 +31,6 @@ public class RandomForest {
         // Perform hyperparameter tuning and testing
         HyperparameterTuning hyperparameterTuning = new HyperparameterTuning(sublist, allAttributes);
         hyperparameterTuning.performHyperparameterTuning();
-
-
-        // below is probably not needed. safe to delete
-
-//        Tree decisionTree = Lab7.buildDecisionTree(data, Lab7.getAttributes(data), Lab7.getAllRows(data), 0, 100);
-//        decisionTree.printWholeTree();
-
-        //prolly just some code used to test or sth. not part of functionality
-//        int attributeCount = (int) Math.floor(allAttributes.length * percentAttributes);
-//        System.out.println("Number of attributes: " + attributeCount);
-//
-//        int length = DataProcessor.getLength("../files/heart_2020_cleaned.csv");
-//        int rowCount = (int) Math.floor(length * percentDataPoints);
-//        System.out.println("Number of data points: " + rowCount);
-
     }
 
     public static ArrayList<Tree> generateForest(int numTrees, double percentDataPoints, double percentAttributes, Matrix data){
