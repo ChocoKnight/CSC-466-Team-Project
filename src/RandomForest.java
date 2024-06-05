@@ -7,30 +7,22 @@ public class RandomForest {
     public static ArrayList<Tree> forest;
 
     public static void main(String[] args) {
-        // HYPERPARAMETERS
-        int numTrees = 1000;
-        double percentDataPoints = 0.8;
-        double percentAttributes = 0.8;
-
         ArrayList<PatientData> patientDataObjs = DataProcessor.processHeartDiseaseData("files/heart_2020_cleaned.csv");
-//         Collections.shuffle(patientDataObjs);  // Shuffle the entire list to get a random subset
-//         ArrayList<PatientData> sublist = new ArrayList<>(patientDataObjs.subList(0, 100));
-//         String[] allAttributes = PatientData.attributes();
-//         Matrix data = DataProcessor.turnPatientDataIntoMatrix(sublist, allAttributes);       // uncomment to use heart data and not lab7 data
+
         int totalPatients = 10000; // example value
         ArrayList<PatientData> balancedData = createBalancedPatientDataArray(patientDataObjs, totalPatients);
 
         String[] allAttributes = PatientData.attributes();
-        Matrix data = DataProcessor.turnPatientDataIntoMatrix(balancedData, allAttributes);  // Convert to matrix
+        Matrix balancedMatrix = DataProcessor.turnPatientDataIntoMatrix(balancedData, allAttributes);
 
-//         Collections.shuffle(patientDataObjs);  // Shuffle the entire list to get a random subset
-//         ArrayList<PatientData> sublist = new ArrayList<>(patientDataObjs.subList(0, 20000));
-//         String[] allAttributes = PatientData.attributes();
-//         Matrix data = DataProcessor.turnPatientDataIntoMatrix(sublist, allAttributes);
+        Tree patientTree = Lab7.buildDecisionTree(balancedMatrix, Lab7.getAttributes(balancedMatrix), Lab7.getAllRows(balancedMatrix), 0, 100);
 
-        // Perform hyperparameter tuning and testing
+        // Perform hyper parameter tuning and testing
         HyperparameterTuning hyperparameterTuning = new HyperparameterTuning(balancedData, allAttributes);
-        hyperparameterTuning.performHyperparameterTuning();
+        hyperparameterTuning.performHyperParameterTuning();
+
+        System.out.println();
+        Tree.printTree(patientTree, "", false);
     }
 
     public static ArrayList<PatientData> createBalancedPatientDataArray(ArrayList<PatientData> patientDataObjs, int totalPatients) {

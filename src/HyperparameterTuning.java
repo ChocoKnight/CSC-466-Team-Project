@@ -73,11 +73,6 @@ public class HyperparameterTuning {
                 }
             }
         }
-
-        System.out.println("Best Hyperparameters:");
-        System.out.println("Number of Trees: " + bestNumTrees);
-        System.out.println("Percent Data Points: " + bestPercentDataPoints);
-        System.out.println("Percent Attributes: " + bestPercentAttributes);
     }
 
     private void splitData(ArrayList<PatientData> data, ArrayList<PatientData> trainingData, ArrayList<PatientData> validationData, ArrayList<PatientData> testingData) {
