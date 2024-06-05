@@ -9,7 +9,7 @@ public class RandomForest {
     public static void main(String[] args) {
         ArrayList<PatientData> patientDataObjs = DataProcessor.processHeartDiseaseData("files/heart_2020_cleaned.csv");
 
-        int totalPatients = 10000; // example value
+        int totalPatients = 20000; // example value
         ArrayList<PatientData> balancedData = createBalancedPatientDataArray(patientDataObjs, totalPatients);
 
         String[] allAttributes = PatientData.attributes();
@@ -17,12 +17,12 @@ public class RandomForest {
 
         Tree patientTree = Lab7.buildDecisionTree(balancedMatrix, Lab7.getAttributes(balancedMatrix), Lab7.getAllRows(balancedMatrix), 0, 100);
 
+        System.out.println();
+        Tree.printTree(patientTree, "", false);
+
         // Perform hyper parameter tuning and testing
         HyperparameterTuning hyperparameterTuning = new HyperparameterTuning(balancedData, allAttributes);
         hyperparameterTuning.performHyperParameterTuning();
-
-        System.out.println();
-        Tree.printTree(patientTree, "", false);
     }
 
     public static ArrayList<PatientData> createBalancedPatientDataArray(ArrayList<PatientData> patientDataObjs, int totalPatients) {

@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="c08a7250-e498-474f-9e3c-545dd24fb68c" name="Changes" comment="finished debugging predict">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/HyperparameterTuning.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/HyperparameterTuning.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/RandomForest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RandomForest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -94,7 +93,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "extract.method.default.visibility": "private",
-    "git-widget-placeholder": "cleaning-code",
+    "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/College/Cal Poly Slo/3. Junior Year/Quarter 3/CSC 466/CSC 466 Team Project/files",
     "node.js.detected.package.eslint": "true",
@@ -259,7 +258,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717470289903</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="cleaned code and display a tree">
+      <option name="closed" value="true" />
+      <created>1717559933587</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1717559933587</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -316,7 +323,8 @@
     <MESSAGE value="starting precision recall and f1score" />
     <MESSAGE value="finished predict for tree. added attributeNames string array to tree objs" />
     <MESSAGE value="actually finished predict" />
-    <option name="LAST_COMMIT_MESSAGE" value="actually finished predict" />
+    <MESSAGE value="cleaned code and display a tree" />
+    <option name="LAST_COMMIT_MESSAGE" value="cleaned code and display a tree" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
