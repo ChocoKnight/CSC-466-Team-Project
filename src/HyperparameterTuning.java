@@ -57,9 +57,10 @@ public class HyperparameterTuning {
         Matrix testingMatrix = DataProcessor.turnPatientDataIntoMatrix(testingData, allAttributes);
 
         // Hyperparameter tuning
-        int[] numTreesOptions = {1000};
+        int[] numTreesOptions = {400};
         double[] percentDataPointsOptions = {0.7};
         double[] percentAttributesOptions = {0.7};
+        //accuracy is 0.789
 
         for (int numTrees : numTreesOptions) {
             for (double percentDataPoints : percentDataPointsOptions) {
